@@ -146,8 +146,8 @@ model_path = os.path.join(BASE_DIR, 'best_skin_cancer_model.keras')
 # تحميل النموذج
 @st.cache_resource
 def load_students_model():
-    # تمرير المسار الديناميكي الكامل للموديل
-    return tf.keras.models.load_model(model_path)
+    # إضافة compile=False تمنع السيرفر من إعادة بناء معايير التدريب وتكتفي بتشغيل النموذج
+    return tf.keras.models.load_model(model_path, compile=False)
 
 try:
     model = load_students_model()
