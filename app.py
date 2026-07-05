@@ -144,16 +144,32 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 model_path = os.path.join(BASE_DIR, 'best_skin_cancer_model.keras')
 
 # تحميل النموذج
+# 1. تحديد المسار المطلق لمجلد المشروع الحالي وضمان الوصول للملف
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+model_path = os.path.join(BASE_DIR, 'best_skin_cancer_model.keras')
+
+# فئة مخصصة (مترجم ذكي) لحل مشكلة التوافق بين إصدارات Keras 2 و Keras 3
+class PatchedInputLayer(tf.keras.layers.InputLayer):
+    @classmethod
+    def from_config(cls, config):
+        if 'batch_shape' in config:
+            config['batch_input_shape'] = config.pop('batch_shape')
+        return super().from_config(config)
+
+# تحميل النموذج
 @st.cache_resource
 def load_students_model():
-    # إضافة compile=False تمنع السيرفر من إعادة بناء معايير التدريب وتكتفي بتشغيل النموذج
-    return tf.keras.models.load_model(model_path, compile=False)
+    # نقوم بتمرير المترجم الذكي عبر خيار custom_objects ليتخطى أخطاء الإصدارات
+    return tf.keras.models.load_model(
+        model_path, 
+        custom_objects={'InputLayer': PatchedInputLayer}, 
+        compile=False
+    )
 
 try:
     model = load_students_model()
     model_loaded = True
 except Exception as e:
-    # طباعة الخطأ الفعلي لمساعدتكم في معرفة السبب الحقيقي بدقة
     st.error(f"🚨 تنبيه: لم يتم تحميل ملف النموذج. تفاصيل الخطأ التقني: {e}")
     model_loaded = False
 
