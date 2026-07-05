@@ -5,6 +5,7 @@ import numpy as np
 from PIL import Image
 import cv2
 import os
+import urllib.request
 
 # =========================================================
 # 1. إعدادات الصفحة والتصميم البصري العصري (Modern UI)
@@ -139,22 +140,52 @@ with st.sidebar:
 st.markdown('<div class="title-text">نظام الفحص الأولي الذكي لسرطان الجلد</div>', unsafe_allow_html=True)
 st.markdown('<div class="subtitle-text">مشروع: اكتشف مبكراً… لتنقذ حياة 🛡️</div>', unsafe_allow_html=True)
 
-# 1. تحديد المسار المطلق لمجلد المشروع الحالي وضمان الوصول للملف
+# 1. تحديد المسار المطلق والملف
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-model_path = os.path.join(BASE_DIR, 'best_skin_cancer_model.keras')
+# يمكنكِ تغيير الامتداد هنا إلى .h5 أو إبقائه .keras حسب اسم ملفك الحالي
+model_name = 'best_skin_cancer_model.keras' 
+model_path = os.path.join(BASE_DIR, model_name)
 
-# تحديد المسار المطلق لمجلد المشروع الحالي وضمان الوصول للملف الجديد .h5
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-model_path = os.path.join(BASE_DIR, 'best_skin_cancer_model.h5')
+# =========================================================
+# ⚠️ ضعي هنا رابط التحميل المباشر للموديل الخاص بكم
+# =========================================================
+# إذا كان دروب بوكس: تأكدي أن الرابط ينتهي بـ dl=1 بدلاً من dl=0
+# إذا كان قوقل درايف: استخدمي صيغة الرابط المباشر: https://docs.google.com/uc?export=download&id=اكتبِ_هنا_معرف_الملف
+MODEL_URL = "ضعِ_رابط_التحميل_المباشر_هنا"
 
-# تحميل النموذج بصيغته الأصلية المستقرة
 @st.cache_resource
 def load_students_model():
+    # إذا كان الملف غير موجود أو حجمه تالف (أصغر من 5 ميجا بسبب مشكلة جيت هب)
+    if not os.path.exists(model_path) or os.path.getsize(model_path) < 5 * 1024 * 1024:
+        if MODEL_URL != "ضعِ_رابط_التحميل_المباشر_هنا":
+            with st.spinner("📥 جاري سحب ملف النموذج الأصلي من السحابة لضمان سلامته... يرجى الانتظار ثوانٍ..."):
+                try:
+                    urllib.request.urlretrieve(MODEL_URL, model_path)
+                except Exception as download_error:
+                    st.error(f"❌ فشل تحميل الملف من السحابة: {download_error}")
+                    return None
+
+    # الترقيع البرمجي الذكي لتفادي مشاكل المسميات بين إصدارات كيرس المختلفة
+    try:
+        original_input_layer_init = tf.keras.layers.InputLayer.__init__
+        def patched_input_layer_init(self, *args, **kwargs):
+            if 'batch_shape' in kwargs:
+                kwargs['batch_input_shape'] = kwargs.pop('batch_shape')
+            original_input_layer_init(self, *args, **kwargs)
+        tf.keras.layers.InputLayer.__init__ = patched_input_layer_init
+    except Exception:
+        pass
+
     return tf.keras.models.load_model(model_path, compile=False)
+
+# كود تشخيصي يظهر للطالبات في القائمة الجانبية لمعرفة الحجم الحقيقي للملف على السيرفر
+if os.path.exists(model_path):
+    actual_size = os.path.getsize(model_path) / (1024 * 1024)
+    st.sidebar.info(f"📦 حجم ملف النموذج الحالي على السيرفر: {actual_size:.2f} MB")
 
 try:
     model = load_students_model()
-    model_loaded = True
+    model_loaded = True if model is not None else False
 except Exception as e:
     st.error(f"🚨 تنبيه: لم يتم تحميل ملف النموذج. تفاصيل الخطأ التقني: {e}")
     model_loaded = False
