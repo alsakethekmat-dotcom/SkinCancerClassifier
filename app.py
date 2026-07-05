@@ -4,6 +4,7 @@ from tensorflow.keras.preprocessing import image
 import numpy as np
 from PIL import Image
 import cv2
+import os
 
 # =========================================================
 # 1. إعدادات الصفحة والتصميم البصري العصري (Modern UI)
@@ -138,16 +139,22 @@ with st.sidebar:
 st.markdown('<div class="title-text">نظام الفحص الأولي الذكي لسرطان الجلد</div>', unsafe_allow_html=True)
 st.markdown('<div class="subtitle-text">مشروع: اكتشف مبكراً… لتنقذ حياة 🛡️</div>', unsafe_allow_html=True)
 
+# 1. تحديد المسار المطلق لمجلد المشروع الحالي وضمان الوصول للملف
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+model_path = os.path.join(BASE_DIR, 'best_skin_cancer_model.keras')
+
 # تحميل النموذج
 @st.cache_resource
 def load_students_model():
-    return tf.keras.models.load_model('best_skin_cancer_model.keras')
+    # تمرير المسار الديناميكي الكامل للموديل
+    return tf.keras.models.load_model(model_path)
 
 try:
     model = load_students_model()
     model_loaded = True
 except Exception as e:
-    st.error("🚨 تنبيه: لم يتم العثور على ملف النموذج 'best_skin_cancer_model.keras'.")
+    # طباعة الخطأ الفعلي لمساعدتكم في معرفة السبب الحقيقي بدقة
+    st.error(f"🚨 تنبيه: لم يتم تحميل ملف النموذج. تفاصيل الخطأ التقني: {e}")
     model_loaded = False
 
 # =========================================================
