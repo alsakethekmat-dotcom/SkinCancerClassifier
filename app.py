@@ -140,7 +140,7 @@ h1,h2,h3{
    صندوق رفع الصورة
 ======================================================= */
 
-[data-testid="stFileUploader"] {
+/*[data-testid="stFileUploader"] {
     direction: rtl !important;
 }
 
@@ -156,7 +156,7 @@ h1,h2,h3{
     background: #eef9ff !important;
     border-color: #0284c7 !important;
 }
-
+*/
 
 
 /* =======================================================
