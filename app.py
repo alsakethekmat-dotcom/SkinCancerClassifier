@@ -5,9 +5,10 @@ import numpy as np
 from PIL import Image
 import cv2
 import os
+import base64
 
 # =========================================================
-# 1. إعدادات الصفحة والتصميم البصري المعاصر (Premium UI)
+# 1. إعدادات الصفحة والتصميم البصري الفاخر (Premium UI)
 # =========================================================
 st.set_page_config(
     page_title="نظام الفحص الذكي - اكتشف مبكراً",
@@ -34,12 +35,12 @@ def go_home():
     st.session_state.user_image = None
     st.rerun()
 
-# كود الـ CSS الثوري لتخطي قيود المقاسات وتغيير شكل الأزرار كلياً
+# كود الـ CSS المطور بالكامل لتغيير تجربة المستخدم البصرية والخطوط والألوان
 st.markdown("""
     <style>
 @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700;800&display=swap');
 
-/* ضبط الخطوط والاتجاهات الشاملة */
+/* ضبط الخطوط والاتجاهات الشاملة للمنصة */
 * {
     font-family: 'Tajawal', sans-serif !important;
 }
@@ -54,140 +55,147 @@ body {
     background: #f8fafc !important;
 }
 
-/* إلغاء الفراغات الميتة بأعلى وأسفل الصفحة لتظهر دفعة واحدة */
+/* التخلص الكامل من الفراغات الميتة غير المستغلة */
 [data-testid="stAppViewBlockContainer"] {
     padding-top: 2rem !important;
     padding-bottom: 2rem !important;
     max-width: 1250px !important;
 }
 
-/* محاذاة أفقية متجانسة للأعمدة */
-[data-testid="stHorizontalBlock"] {
-    align-items: center !important;
-    gap: 25px !important;
-}
-
-/* نصوص وعناوين الهيدر الرئيسي المدمج بجانب اللوغو الكبير */
-.main-title {
-    font-size: 2.6rem !important;
-    font-weight: 800 !important;
-    color: #0f766e !important; /* تركواز طبي فاخر متناسق مع الشعار */
-    margin: 0 !important;
-    padding: 0 !important;
-    line-height: 1.3 !important;
-}
-
-.main-subtitle {
-    color: #334155 !important;
-    font-size: 1.3rem !important;
-    font-weight: 700 !important;
-    margin-top: 10px !important;
-    margin-bottom: 0 !important;
-}
-
-/* تكبير وتغميق خطوط المحتوى لمنع البهتان والضعف */
+/* تكبير وتغميق خطوط المحتوى العام لمنع البهتان تماماً */
 p, li, span, .stMarkdown {
-    font-size: 20px !important;
-    color: #0f172a !important; /* أسود داكن ملكي فائق الوضوح */
+    font-size: 21px !important; /* تكبير الخط العام */
+    color: #0f172a !important; /* أسود داكن عميق */
     line-height: 1.8 !important;
     font-weight: 500 !important;
 }
 
-/* تصميم البطاقات العصرية */
+/* تصميم حاوية الهوية البصرية الممركزة (اللوغو والاسم بجوار بعضهما بالمنتصف) */
+.brand-flex-container {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 30px !important;
+    width: 100% !important;
+    margin-bottom: 35px !important;
+    flex-wrap: wrap !important;
+}
+
+.brand-logo-img {
+    width: 160px !important; /* حجم الشعار المكبّر والواضح */
+    height: auto !important;
+    border-radius: 18px !important;
+    box-shadow: 0 8px 20px rgba(15, 118, 110, 0.1) !important;
+}
+
+.brand-text-block {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+}
+
+.main-title {
+    font-size: 3.0rem !important; /* تكبير حجم عنوان المشروع الإستراتيجي */
+    font-weight: 800 !important;
+    color: #0f766e !important; /* تركواز طبي متسق مع الشعار */
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.2 !important;
+}
+
+.main-subtitle {
+    color: #334155 !important;
+    font-size: 1.4rem !important; /* تكبير حجم العبارة التوضيحية */
+    font-weight: 700 !important;
+    margin-top: 12px !important;
+    margin-bottom: 0 !important;
+}
+
+/* تصميم البطاقات العصرية والمحتوى */
 .custom-card {
     background: white !important;
-    padding: 25px !important;
+    padding: 30px !important;
     border-radius: 20px !important;
     box-shadow: 0 10px 25px rgba(15, 118, 110, 0.04) !important;
     border: 1px solid #e2e8f0 !important;
 }
-
 .info-card { border-right: 6px solid #0f766e !important; }
 .team-card { border-right: 6px solid #0284c7 !important; }
 
 .card-title {
-    font-size: 22px !important;
+    font-size: 24px !important; /* خط أكبر لعناوين البطاقات */
     font-weight: 800 !important;
     color: #0f172a !important;
-    margin-bottom: 12px !important;
+    margin-bottom: 15px !important;
 }
 
 .card-body-text {
-    font-size: 18px !important;
+    font-size: 19px !important; /* خط أكبر لتفاصيل البطاقات */
     color: #334155 !important;
     line-height: 1.8 !important;
 }
 
 /* تكبير خطوط خيارات الاستبيان */
 .stCheckbox label p {
-    font-size: 19px !important;
+    font-size: 21px !important;
     color: #0f172a !important;
     font-weight: 700 !important;
 }
 .stCheckbox {
-    background: white; padding: 15px 20px; border-radius: 12px;
-    border: 1px solid #cbd5e1; margin-bottom: 10px;
+    background: white; padding: 18px 22px; border-radius: 12px;
+    border: 1px solid #cbd5e1; margin-bottom: 12px;
 }
 
-/* ==========================================
-   🎯 هندسة الأزرار الجديدة وحل مشكلة الجمود 
-   ========================================== */
+/* =====================================================
+   🎯 هندسة الأزرار الثورية والملونة المتناسقة تفاعلياً
+   ===================================================== */
 
-/* 1. السحر البصري: زر البداية الخارق (الكبسولة المتدرجة الممركزة) */
+/* زر البداية: كبسولة ياقوتية خارقة الجمال وممركزة بالمنتصف تفصل التطبيق عن الملل */
 div[data-testid="element-container"]:has(.hero-btn-marker) + div[data-testid="element-container"] div[data-testid="stButton"] button {
-    background: linear-gradient(135deg, #0f766e 0%, #0284c7 100%) !important;
+    background: linear-gradient(135deg, #e11d48 0%, #f43f5e 100%) !important; /* لون ياقوتي / قرمزي حيوي وبارز جداً */
     color: white !important;
-    font-size: 24px !important;
+    font-size: 25px !important;
     font-weight: 800 !important;
-    padding: 16px 0px !important;
-    width: 100% !important; /* يملأ العمود الأوسط المخصص له ليظهر بالمنتصف */
+    padding: 18px 0px !important;
+    width: 100% !important;
     border-radius: 50px !important;
     border: none !important;
-    box-shadow: 0 10px 25px rgba(15, 118, 110, 0.35) !important;
+    box-shadow: 0 10px 25px rgba(225, 29, 72, 0.35) !important;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
 }
 
 div[data-testid="element-container"]:has(.hero-btn-marker) + div[data-testid="element-container"] div[data-testid="stButton"] button:hover {
     transform: translateY(-4px) !important;
-    box-shadow: 0 15px 35px rgba(15, 118, 110, 0.5) !important;
-    filter: brightness(1.15) !important;
+    box-shadow: 0 15px 35px rgba(225, 29, 72, 0.5) !important;
+    filter: brightness(1.1) !important;
 }
 
-/* 2. أزرار الانتقال داخل الصفحات اللاحقة */
+/* أزرار الفحص والتنقل بالصفحات الأخرى */
 div[data-testid="element-container"]:has(.next-btn-marker) + div[data-testid="element-container"] div[data-testid="stButton"] button {
     width: 100% !important;
     background: linear-gradient(90deg, #0f766e, #0284c7) !important;
     color: white !important;
-    font-size: 21px !important;
+    font-size: 22px !important;
     font-weight: 700 !important;
     border: none !important;
     border-radius: 50px !important;
-    padding: 14px !important;
-    box-shadow: 0 5px 15px rgba(15, 118, 110, 0.25) !important;
-    transition: all 0.3s ease !important;
-}
-div[data-testid="element-container"]:has(.next-btn-marker) + div[data-testid="element-container"] div[data-testid="stButton"] button:hover {
-    transform: translateY(-2px) !important;
-    box-shadow: 0 8px 20px rgba(15, 118, 110, 0.4) !important;
+    padding: 15px !important;
+    box-shadow: 0 6px 18px rgba(15, 118, 110, 0.25) !important;
 }
 
-/* 3. زر العودة للرئيسية الأنيق في الهيدر */
+/* زر العودة للرئيسية في الهيدر */
 div[data-testid="element-container"]:has(.nav-btn-marker) + div[data-testid="element-container"] div[data-testid="stButton"] button {
     width: auto !important;
     background: white !important;
     color: #0f766e !important;
     border: 2px solid #0f766e !important;
-    font-size: 15px !important;
+    font-size: 16px !important;
     font-weight: 700 !important;
-    padding: 6px 18px !important;
+    padding: 6px 20px !important;
     border-radius: 8px !important;
-    transition: all 0.2s ease !important;
-}
-div[data-testid="element-container"]:has(.nav-btn-marker) + div[data-testid="element-container"] div[data-testid="stButton"] button:hover {
-    background: #f0fdfa !important;
 }
 
-/* صندوق رفع الملفات */
+/* تخصيص صندوق المرفقات ورفع الملفات ليتسق مع الهوية الفاخرة */
 .stFileUploader section {
     border: 3px dashed #0f766e !important;
     border-radius: 20px !important;
@@ -197,7 +205,7 @@ div[data-testid="element-container"]:has(.nav-btn-marker) + div[data-testid="ele
 .stFileUploader section::before {
     content: "📷 اسحب صورة الشامة هنا أو اضغط على الزر بالأسفل" !important;
     display: block !important;
-    font-size: 18px !important;
+    font-size: 19px !important;
     font-weight: 700 !important;
     color: #0f766e !important;
     text-align: center !important;
@@ -207,7 +215,7 @@ div[data-testid="element-container"]:has(.nav-btn-marker) + div[data-testid="ele
     background: linear-gradient(90deg, #0f766e, #0284c7) !important;
     border: none !important; border-radius: 12px !important;
     padding: 20px 50px !important; color: transparent !important;
-    font-size: 0px !important; margin: 0 auto !important; display: block !important;
+    margin: 0 auto !important; display: block !important;
 }
 .stFileUploader button::after {
     content: "اختيار صورة من الجهاز 📂" !important;
@@ -219,7 +227,7 @@ div[data-testid="element-container"]:has(.nav-btn-marker) + div[data-testid="ele
 """, unsafe_allow_html=True)
 
 # =========================================================
-# 2. تحميل نموذج الذكاء الاصطناعي في الخلفية
+# 2. تحميل نموذج الذكاء الاصطناعي ودوال الفحص الخلفية
 # =========================================================
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 model_name = 'best_skin_cancer_model.keras' 
@@ -257,6 +265,14 @@ def is_valid_skin_image(pil_img):
         return (np.sum(combined_mask > 0) / combined_mask.size) * 100 > 25.0
     return False
 
+# دالة ذكية لتحويل اللوغو المحلي إلى بايتات لقراءته بشكل مرن داخل كود التمركز المستحدث
+def get_base64_encoded_image(image_path):
+    try:
+        with open(image_path, "rb") as img_file:
+            return base64.b64encode(img_file.read()).decode()
+    except Exception:
+        return ""
+
 
 # =========================================================
 # 3. الإطار العلوي الثابت المتعاكس (Header) - الصفحات الداخلية
@@ -264,7 +280,7 @@ def is_valid_skin_image(pil_img):
 if st.session_state.page != 'home':
     header_btn, header_title, header_logo = st.columns([1.5, 4, 1.2])
     with header_logo:
-        st.image("logo.jpeg", width=110) 
+        st.image("logo.jpeg", width=115) 
     with header_title:
         st.markdown("<h2 style='color:#0f766e; margin-top:25px; text-align:right; font-weight:800;'>نظام الفحص الأولي الذكي</h2>", unsafe_allow_html=True)
     with header_btn:
@@ -280,21 +296,28 @@ if st.session_state.page != 'home':
 # 4. منطق عرض وتنسيق الصفحات المتتابعة
 # =========================================================
 
-# ----------------- [صفحة 1: الصفحة الرئيسية المحدثة بالكامل] -----------------
+# ----------------- [صفحة 1: الصفحة الرئيسية المحدثة كلياً] -----------------
 if st.session_state.page == 'home':
-    # دمج اللوغو المكبّر والعناوين أفقياً تماماً لليمين لإلغاء التشتت والفراغات السابقة
-    col_main_logo, col_title_text = st.columns([1, 4])
     
-    with col_main_logo:
-        st.image("logo.jpeg", width=180) # تكبير الشعار بشكل رائع ووضعه أقصى اليمين البصري
-        
-    with col_title_text:
-        st.markdown('<h1 class="main-title">نظام الفحص الأولي لسرطان الجلد</h1>', unsafe_allow_html=True)
-        st.markdown('<p class="main-subtitle">مشروع ابتكاري متميز: اكتشف مبكراً… لتنقذ حياة 🛡️</p>', unsafe_allow_html=True)
+    # استدعاء دالة التحويل وتطبيق التمركز المطلق المتجاور رغماً عن قيود المتصفح الهيكلية
+    logo_b64 = get_base64_encoded_image(os.path.join(BASE_DIR, "logo.jpeg"))
     
-    st.markdown("<br><br>", unsafe_allow_html=True)
+    if logo_b64:
+        st.markdown(f"""
+        <div class="brand-flex-container">
+            <img src="data:image/jpeg;base64,{logo_b64}" class="brand-logo-img" />
+            <div class="brand-text-block">
+                <h1 class="main-title">نظام الفحص الأولي لسرطان الجلد</h1>
+                <p class="main-subtitle">مشروع ابتكاري متميز: اكتشف مبكراً… لتنقذ حياة 🛡️</p>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+    else:
+        st.markdown('<h1 class="main-title" style="text-align:center;">نظام الفحص الأولي لسرطان الجلد</h1>', unsafe_allow_html=True)
     
-    # بطاقات العرض الشبكية المتناسقة والمغلقة بذكاء للتخلص من الفراغات الميتة
+    st.markdown("<br>", unsafe_allow_html=True)
+    
+    # بطاقات العرض الشبكية المحسنة وذات نصوص كبيرة وواضحة جداً
     col_info, col_team = st.columns([1.1, 0.9])
     
     with col_info:
@@ -323,7 +346,7 @@ if st.session_state.page == 'home':
         
     st.markdown("<br>", unsafe_allow_html=True)
     
-    # تقسيم أسطوري لتوسط الزر في المنتصف تماماً والتحكم بحجمه الجذاب
+    # توسيط كبسولة البداية بالمنتصف التام باللون الياقوتي الجديد الفخم البارز
     _, btn_center_col, _ = st.columns([1, 1.6, 1])
     with btn_center_col:
         st.markdown('<div class="hero-btn-marker"></div>', unsafe_allow_html=True)
@@ -334,7 +357,7 @@ if st.session_state.page == 'home':
 # ----------------- [صفحة 2: استبيان ABCDE السريري] -----------------
 elif st.session_state.page == 'survey':
     st.markdown("<h2 style='color:#0f766e; font-weight:800;'>📋 الخطوة الأولى: التقييم السريري (ABCDE)</h2>", unsafe_allow_html=True)
-    st.markdown("<p style='font-size:18px; color:#475569;'>الرجاء الإجابة على الأسئلة التالية بناءً على ملاحظتك البصرية للشامة الحالية:</p>", unsafe_allow_html=True)
+    st.markdown("<p style='font-size:20px; color:#475569;'>الرجاء الإجابة على الأسئلة التالية بناءً على ملاحظتك البصرية للشامة الحالية:</p>", unsafe_allow_html=True)
     st.markdown("<br>", unsafe_allow_html=True)
     
     a = st.checkbox("A - عدم التماثل: هل شكل الشامة غير متماثل (إذا قسمتها من المنتصف لا يتطابق النصفان)؟")
@@ -353,7 +376,7 @@ elif st.session_state.page == 'survey':
 # ----------------- [صفحة 3: رفع الصورة وتحليلها] -----------------
 elif st.session_state.page == 'upload':
     st.markdown("<h2 style='color:#0f766e; font-weight:800;'>📸 الخطوة الثانية: الفحص الرقمي (الذكاء الاصطناعي)</h2>", unsafe_allow_html=True)
-    st.markdown("<p style='font-size:18px; color:#475569;'>الرجاء رفع صورة قريبة جداً وواضحة للشامة المستهدفة:</p>", unsafe_allow_html=True)
+    st.markdown("<p style='font-size:20px; color:#475569;'>الرجاء رفع صورة قريبة جداً وواضحة للشامة المستهدفة:</p>", unsafe_allow_html=True)
     
     if not model_loaded:
         st.error("🚨 خطأ تقني: لم يتم تحميل ملف ذكاء اصطناعي صالح كـ 'best_skin_cancer_model.keras'.")
