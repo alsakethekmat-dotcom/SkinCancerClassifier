@@ -35,7 +35,7 @@ def go_home():
     st.session_state.user_image = None
     st.rerun()
 
-# كود الـ CSS المطور والمصلح بالكامل لحل مشكلة صندوق الرفع نهائياً
+# كود الـ CSS الحاسم والمطور لإنهاء مشكلة تداخل أزرار الرفع للأبد
 st.markdown("""
     <style>
 @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700;800&display=swap');
@@ -196,47 +196,55 @@ div[data-testid="element-container"]:has(.nav-btn-marker) + div[data-testid="ele
 }
 
 /* =====================================================
-   💎 الحل الجذري لإصلاح صندوق المرفقات (image_f9bbeb.png)
+   💎 التحديث الحاسم لإصلاح التشوه البصري في (image_f9c009.png)
    ===================================================== */
 [data-testid="stFileUploaderDropzone"] {
     border: 2px dashed #0f766e !important;
-    border-radius: 20px !important;
+    border-radius: 24px !important;
     background-color: #f0fdfa !important;
-    padding: 40px !important;
+    padding: 50px 30px !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
     justify-content: center !important;
-    gap: 15px !important;
+    gap: 20px !important;
 }
 
-/* تحسين مظهر نصوص التعليمات والقيود الافتراضية لمنع تداخلها */
-[data-testid="stFileUploaderDropzone"] div [data-testid="stMarkdownContainer"] p,
-[data-testid="stFileUploaderDropzone"] span {
-    color: #475569 !important;
-    font-size: 16px !important;
-    font-weight: 600 !important;
-    text-align: center !important;
-}
-
-/* إعادة هيكلة وتصميم زر رفع الملفات الأصلي بشكل مبهر وبدون أي تداخل نصي */
+/* تنظيف وتنسيق الزر بشكل نقي ومنع تضاعف أو تداخل الحروف */
 [data-testid="stFileUploaderDropzone"] button {
     background: linear-gradient(135deg, #0f766e 0%, #0284c7 100%) !important;
-    color: white !important;
     border: none !important;
-    padding: 12px 40px !important;
+    padding: 14px 45px !important;
     border-radius: 50px !important;
-    font-size: 17px !important;
-    font-weight: 700 !important;
-    box-shadow: 0 6px 18px rgba(15, 118, 110, 0.2) !important;
-    transition: all 0.2s ease !important;
-    margin: 10px auto 0 auto !important;
+    box-shadow: 0 8px 22px rgba(15, 118, 110, 0.22) !important;
+    transition: all 0.3s ease !important;
+    margin: 5px auto !important;
     display: inline-block !important;
+}
+
+/* فرض اللون الأبيض المطلق على النص وعلى كل الطبقات الداخلية للزر لمنع تداخل أي نصوص داكنة */
+[data-testid="stFileUploaderDropzone"] button,
+[data-testid="stFileUploaderDropzone"] button * {
+    color: #ffffff !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    text-shadow: none !important;
 }
 
 [data-testid="stFileUploaderDropzone"] button:hover {
     transform: translateY(-2px) !important;
-    box-shadow: 0 10px 22px rgba(15, 118, 110, 0.35) !important;
+    box-shadow: 0 12px 26px rgba(15, 118, 110, 0.4) !important;
+}
+
+/* تنسيق النصوص الفرعية والمساعدة وتوفير مسافة كافية تمنع التكدس */
+[data-testid="stFileUploaderDropzone"] span,
+[data-testid="stFileUploaderDropzone"] p,
+[data-testid="stUploadDropzoneInstructions"] {
+    color: #475569 !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    text-align: center !important;
+    margin-top: 8px !important;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -372,9 +380,9 @@ elif st.session_state.page == 'survey':
     st.markdown("<br>", unsafe_allow_html=True)
     
     a = st.checkbox("A - عدم التماثل: هل شكل الشامة غير متماثل (إذا قسمتها من المنتصف لا يتطابق النصفان)؟")
-    b = st.checkbox("B - الحدود: هل أطراف الشامة الخارجية متعرجة, خشنة، أو غير منتظمة؟")
+    b = st.checkbox("B - الحدود: هل أطراف الشامة الخارجية متعرجة، خشنة، أو غير منتظمة؟")
     c = st.checkbox("C - اللون: هل تحتوي الشامة على تدرجات ألوان مختلفة (بني، أسود، أحمر، رمادي)؟")
-    d = st.checkbox("D - القطر: هل يزيد القطر الإجمالي لحجم الشامة عن 6 ملم؟")
+    d = st.checkbox("D - القطر: هل يزيد القطر الإجمالي لحجم الشامة عن 6 ملم Bars؟")
     e = st.checkbox("E - التطور: هل لاحظت تغيراً مفاجئاً في حجمها، أو بدأت تسبب حكة ونزيف؟")
     
     st.markdown("<br>", unsafe_allow_html=True)
@@ -384,7 +392,7 @@ elif st.session_state.page == 'survey':
         st.session_state.page = 'upload'
         st.rerun()
 
-# ----------------- [صفحة 3: رفع الصورة وتحليلها المصلحة جذرياً] -----------------
+# ----------------- [صفحة 3: رفع الصورة وتحليلها - نسخة مصلحة كلياً] -----------------
 elif st.session_state.page == 'upload':
     st.markdown("<h2 style='color:#0f766e; font-weight:800;'>📸 الخطوة الثانية: الفحص الرقمي (الذكاء الاصطناعي)</h2>", unsafe_allow_html=True)
     st.markdown("<p style='font-size:20px; color:#475569;'>الرجاء رفع صورة قريبة جداً وواضحة للشامة المستهدفة:</p>", unsafe_allow_html=True)
@@ -392,7 +400,6 @@ elif st.session_state.page == 'upload':
     if not model_loaded:
         st.error("🚨 خطأ تقني: لم يتم تحميل ملف ذكاء اصطناعي صالح كـ 'best_skin_cancer_model.keras'.")
     
-    # الصندوق الآن نظيف وخالي من أي تشوهات نصية متداخلة
     uploaded_file = st.file_uploader("ارفع الصورة هنا", type=["jpg", "jpeg", "png"])
     
     if uploaded_file is not None:
