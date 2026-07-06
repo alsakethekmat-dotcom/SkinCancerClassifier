@@ -140,23 +140,7 @@ h1,h2,h3{
    صندوق رفع الصورة
 ======================================================= */
 
-/*[data-testid="stFileUploader"] {
-    direction: rtl !important;
-}
 
-[data-testid="stFileUploadDropzone"] {
-    border: 3px dashed #0ea5e9 !important;
-    border-radius: 18px !important;
-    background: #f8fcff !important;
-    padding: 30px 20px !important;
-    transition: .3s;
-}
-
-[data-testid="stFileUploadDropzone"]:hover {
-    background: #eef9ff !important;
-    border-color: #0284c7 !important;
-}
-*/
 
 
 /* =======================================================
