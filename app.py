@@ -157,26 +157,7 @@ h1,h2,h3{
     border-color: #0284c7 !important;
 }
 
-/* ===== إصلاح زر Browse ===== */
 
-[data-testid="stFileUploadDropzone"] button {
-    position: relative !important;
-    color: transparent !important;
-}
-
-/* إخفاء جميع العناصر داخل الزر */
-[data-testid="stFileUploadDropzone"] button * {
-    display: none !important;
-}
-
-/* إنشاء النص الجديد */
-[data-testid="stFileUploadDropzone"] button::before {
-    content: "Browse";
-    color: #111827;
-    font-size: 14px;
-    font-weight: 600;
-    font-family: Arial, sans-serif;
-}
 
 /* =======================================================
    بطاقات الفريق
