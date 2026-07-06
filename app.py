@@ -139,53 +139,44 @@ h1,h2,h3{
 }
 
 /* =======================================================
-   صندوق رفع الصورة
+   صندوق رفع الصورة المطور (المستبدل لحل مشكلة الزر)
 ======================================================= */
 
-[data-testid="stFileUploader"]{
-    direction:rtl !important;
+[data-testid="stFileUploader"] {
+    direction: rtl !important;
 }
 
-[data-testid="stFileUploadDropzone"]{
-    border:3px dashed #0ea5e9 !important;
-    border-radius:18px !important;
-    background:#f8fcff !important;
-    padding:40px 20px !important;
-    transition:.3s;
+[data-testid="stFileUploadDropzone"] {
+    border: 3px dashed #0ea5e9 !important;
+    border-radius: 18px !important;
+    background: #f8fcff !important;
+    padding: 40px 20px !important;
+    transition: .3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-[data-testid="stFileUploadDropzone"]:hover{
-    background:#eef9ff !important;
-    border-color:#0284c7 !important;
+[data-testid="stFileUploadDropzone"]:hover {
+    background: #eef9ff !important;
+    border-color: #0284c7 !important;
 }
 
-[data-testid="stFileUploadDropzone"] div{
-    text-align:center !important;
+/* التعديل الجذري: إخفاء المحتوى الداخلي بالكامل لمنع تداخل الترجمة وتشويه الزر */
+[data-testid="stFileUploadDropzone"] > div {
+    display: none !important;
 }
 
-/* إخفاء النص الإنجليزي */
-
-[data-testid="stFileUploadDropzone"] span,
-[data-testid="stFileUploadDropzone"] small{
-    display:none !important;
-}
-
-/* كتابة رسالة عربية كبيرة وواضحة */
-
-[data-testid="stFileUploadDropzone"]::before{
-
-content:"📷 اضغط هنا لاختيار صورة الشامة أو اسحبها إلى هذه المنطقة";
-
-display:block;
-
-font-size:22px;
-
-font-weight:700;
-
-color:#0284c7;
-
-margin-bottom:10px;
-
+/* النص العربي البديل والواضح */
+[data-testid="stFileUploadDropzone"]::before {
+    content: "📷 اضغط هنا لاختيار صورة الشامة أو اسحبها إلى هذه المنطقة";
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    color: #0284c7;
+    text-align: center !important;
+    cursor: pointer;
 }
 
 /* =======================================================
