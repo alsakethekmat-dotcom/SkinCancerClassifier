@@ -16,13 +16,13 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# كود CSS لواجهة عصرية، تفاعلية، ومريحة للعين وخالية من التداخل
+# كود CSS المطور بالكامل لتغيير شكل صندوق الرفع وجعله تفاعلياً وعربياً 100%
 st.markdown("""
     <style>
 @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap');
 
 /* =======================================================
-   1. الخط والاتجاه العام (النسخة الآمنة للتوجيه العربي)
+   1. الخط والاتجاه العام الآمن
 ======================================================= */
 * {
     font-family: 'Tajawal', sans-serif !important;
@@ -95,7 +95,7 @@ h1, h2, h3 {
 }
 
 /* =======================================================
-   5. زر بدء الفحص (الأساسي)
+   5. زر بدء الفحص (الأساسي اللامع)
 ======================================================= */
 .stButton>button {
     width: 100%;
@@ -112,70 +112,86 @@ h1, h2, h3 {
 
 .stButton>button:hover {
     transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(2,132,199,.45);
 }
 
 /* =======================================================
-   6. صندوق رفع الصورة (معرب بالكامل ومحمي من التداخل)
+   6. التنسيق الثوري والجديد لصندوق رفع الصورة (مكسور الجمود)
 ======================================================= */
 [data-testid="stFileUploader"] {
     direction: rtl !important;
 }
 
-/* تصميم الصندوق نفسه */
+/* إعادة تصميم الحاوية الكبيرة بالكامل */
 [data-testid="stFileUploadDropzone"] {
     border: 3px dashed #0ea5e9 !important;
-    border-radius: 18px !important;
-    background: #f8fcff !important;
-    padding: 30px 20px !important;
-    transition: .3s;
-    text-align: center !important;
+    border-radius: 20px !important;
+    background: #f0f9ff !important; /* خلفية زرقاء ناعمة مريحة */
+    padding: 45px 20px !important;
+    transition: all 0.3s ease-in-out;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 15px !important;
 }
 
 [data-testid="stFileUploadDropzone"]:hover {
-    background: #eef9ff !important;
+    background: #e0f2fe !important; /* تفتيح الخلفية عند اللمس */
     border-color: #0284c7 !important;
+    transform: translateY(-2px);
 }
 
-/* إخفاء النصوص الإنجليزية القديمة (مثل Drag and drop) */
-[data-testid="stFileUploadDropzone"] > div > span,
-[data-testid="stFileUploadDropzone"] > div > small {
+/* إخفاء كل الهياكل والنصوص الإنجليزية المتداخلة نهائياً */
+[data-testid="stFileUploadDropzone"] section,
+[data-testid="stFileUploadDropzone"] div span,
+[data-testid="stFileUploadDropzone"] div small {
     display: none !important;
 }
 
-/* رسالة التوجيه العربية داخل الصندوق */
-[data-testid="stFileUploadDropzone"] > div::before {
-    content: "📷 اضغط هنا لاختيار صورة الشامة أو اسحبها إلى هذه المنطقة";
-    display: block;
-    font-size: 20px;
-    font-weight: 700;
-    color: #0284c7;
-    margin-bottom: 15px;
+/* حقن النص التوجيهي العربي بخط عريض وجميل */
+[data-testid="stFileUploadDropzone"]::before {
+    content: "📷 اسحب صورة الشامة هنا أو اضغط على الزر بالأسفل";
+    display: block !important;
+    font-size: 19px !important;
+    font-weight: 700 !important;
+    color: #0369a1 !important;
     text-align: center !important;
+    margin-bottom: 5px;
 }
 
-/* زر الرفع الداخلي: إخفاء الكلمة المشوهة */
+/* تحويل الزر الداخلي "الجامد" إلى زر عصري وملون وملفت للنظر */
 [data-testid="stFileUploadDropzone"] button {
+    font-size: 0px !important; /* تصفير الكلمة المشوهة بالكامل */
+    background: linear-gradient(90deg, #0ea5e9, #0284c7) !important; /* تلوين الزر */
     color: transparent !important;
-    position: relative;
-    background-color: white !important;
-    border: 1px solid #0ea5e9 !important;
-    border-radius: 8px !important;
-    padding: 5px 15px !important;
+    border: none !important;
+    border-radius: 12px !important;
+    padding: 25px 80px !important; /* تكبير حجم الزر */
+    cursor: pointer !important;
+    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.25) !important;
+    transition: all 0.3s !important;
+    position: relative !important;
+    display: inline-block !important;
 }
 
-/* زر الرفع الداخلي: حقن الكلمة العربية النظيفة */
+[data-testid="stFileUploadDropzone"] button:hover {
+    background: linear-gradient(90deg, #0284c7, #0369a1) !important;
+    box-shadow: 0 6px 15px rgba(2, 132, 199, 0.4) !important;
+    transform: scale(1.03);
+}
+
+/* كتابة النص العربي المختار والنظيف فوق الزر الجديد */
 [data-testid="stFileUploadDropzone"] button::after {
-    content: "تصفح الملفات"; /* النص العربي للزر */
-    color: #0284c7 !important;
+    content: "اختيار صورة من الجهاز 📂";
+    color: white !important; /* خط أبيض واضح */
     font-size: 16px !important;
-    font-family: 'Tajawal', sans-serif !important;
-    font-weight: 700;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    white-space: nowrap;
-    visibility: visible !important;
+    font-weight: 700 !important;
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    white-space: nowrap !important;
 }
 
 /* =======================================================
@@ -198,11 +214,6 @@ h1, h2, h3 {
     color: #334155;
     font-size: 18px;
     line-height: 2;
-}
-
-/* الرسائل والتنبيهات */
-[data-testid="stAlert"] {
-    font-size: 18px !important;
 }
 </style>
 """, unsafe_allow_html=True)
