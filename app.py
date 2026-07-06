@@ -118,54 +118,26 @@ h1,h2,h3{
 }
 
 /* =======================================================
-   صندوق رفع الصورة
+   زر بدء الفحص
 ======================================================= */
 
-[data-testid="stFileUploader"] {
-    direction: rtl !important;
+.stButton>button{
+    width:100%;
+    background:linear-gradient(90deg,#0284c7,#0ea5e9);
+    color:white !important;
+    font-size:22px !important;
+    font-weight:700;
+    border:none;
+    border-radius:50px;
+    padding:14px;
+    transition:.3s;
+    box-shadow:0 5px 15px rgba(2,132,199,.35);
 }
 
-[data-testid="stFileUploadDropzone"] {
-    border: 3px dashed #0ea5e9 !important;
-    border-radius: 18px !important;
-    background: #f8fcff !important;
-    padding: 30px 20px !important;
-    transition: .3s;
+.stButton>button:hover{
+    transform:translateY(-2px);
 }
 
-[data-testid="stFileUploadDropzone"]:hover {
-    background: #eef9ff !important;
-    border-color: #0284c7 !important;
-}
-
-/* ==========================================
-   إصلاح نص زر رفع الملف
-========================================== */
-
-[data-testid="stFileUploadDropzone"] button {
-    position: relative !important;
-    color: transparent !important;      /* إخفاء النص الأصلي */
-    text-shadow: none !important;
-}
-
-/* إخفاء أي span داخل الزر */
-[data-testid="stFileUploadDropzone"] button span {
-    visibility: hidden !important;
-}
-
-/* إظهار النص الجديد */
-[data-testid="stFileUploadDropzone"] button::after {
-    content: "Browse";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #111827 !important;
-    font-size: 14px !important;
-    font-family: Arial, sans-serif !important;
-    font-weight: 600 !important;
-    white-space: nowrap;
-}
 /* =======================================================
    صندوق رفع الصورة
 ======================================================= */
