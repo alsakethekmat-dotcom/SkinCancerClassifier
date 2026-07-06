@@ -16,164 +16,194 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# كود CSS لواجهة عصرية، تفاعلية، ومريحة للعين
+# كود CSS لواجهة عصرية، تفاعلية، ومريحة للعين وخالية من التداخل
 st.markdown("""
     <style>
 @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap');
 
 /* =======================================================
-   الخط والاتجاه العام
+   1. الخط والاتجاه العام (النسخة الآمنة للتوجيه العربي)
 ======================================================= */
-
-html,
-body,
-[class*="css"],
-[data-testid="stAppViewContainer"],
-[data-testid="stSidebar"],
-[data-testid="stMarkdownContainer"],
-[data-testid="stVerticalBlock"],
-[data-testid="stHorizontalBlock"],
-[data-testid="stFileUploader"],
-label,
-p,
-span,
-div,
-input,
-textarea {
+* {
     font-family: 'Tajawal', sans-serif !important;
+}
+
+html, body, [data-testid="stAppViewContainer"], [data-testid="stSidebar"], 
+[data-testid="stMarkdownContainer"], .stMarkdown, label, p, h1, h2, h3, h4, h5, h6, 
+.stCheckbox, .stAlert {
     direction: rtl !important;
     text-align: right !important;
 }
-body{
-    background:#f4f7f6 !important;
+
+body {
+    background: #f4f7f6 !important;
 }
 
 /* =======================================================
-   القائمة الجانبية
+   2. القائمة الجانبية
 ======================================================= */
-
-[data-testid="stSidebar"]{
-    background:#ffffff !important;
-    border-left:1px solid #e5e7eb;
+[data-testid="stSidebar"] {
+    background: #ffffff !important;
+    border-left: 1px solid #e5e7eb;
 }
 
 /* =======================================================
-   العنوان
+   3. العناوين الأساسية
 ======================================================= */
-
-.title-text{
-    font-size:2.8rem;
-    font-weight:800;
-    background:-webkit-linear-gradient(45deg,#0284c7,#0ea5e9);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-    text-align:center !important;
-    margin-bottom:8px;
+.title-text {
+    font-size: 2.8rem;
+    font-weight: 800;
+    background: -webkit-linear-gradient(45deg,#0284c7,#0ea5e9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center !important;
+    margin-bottom: 8px;
 }
 
-.subtitle-text{
-    color:#475569;
-    font-size:1.25rem;
-    font-weight:600;
-    text-align:center !important;
-    margin-bottom:35px;
+.subtitle-text {
+    color: #475569;
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-align: center !important;
+    margin-bottom: 35px;
 }
 
 /* =======================================================
-   حجم الخط العام
+   4. حجم الخط العام للاستبيان
 ======================================================= */
-
-p,
-label,
-li,
-span,
-.stMarkdown,
-.stCaption{
-    font-size:18px !important;
-    line-height:1.9;
+p, label, li, span, .stMarkdown, .stCaption {
+    font-size: 18px !important;
+    line-height: 1.9;
 }
 
-h1,h2,h3{
-    font-weight:700 !important;
+h1, h2, h3 {
+    font-weight: 700 !important;
+}
+
+.stCheckbox {
+    background: white;
+    padding: 16px 20px;
+    border-radius: 14px;
+    border: 1px solid #edf2f7;
+    box-shadow: 0 4px 10px rgba(0,0,0,.05);
+    margin-bottom: 12px;
+}
+
+.stCheckbox label {
+    font-size: 18px !important;
+    font-weight: 500;
 }
 
 /* =======================================================
-   بطاقات الاستبيان
+   5. زر بدء الفحص (الأساسي)
 ======================================================= */
-
-.stCheckbox{
-    background:white;
-    padding:16px 20px;
-    border-radius:14px;
-    border:1px solid #edf2f7;
-    box-shadow:0 4px 10px rgba(0,0,0,.05);
-    margin-bottom:12px;
+.stButton>button {
+    width: 100%;
+    background: linear-gradient(90deg,#0284c7,#0ea5e9);
+    color: white !important;
+    font-size: 22px !important;
+    font-weight: 700;
+    border: none;
+    border-radius: 50px;
+    padding: 14px;
+    transition: .3s;
+    box-shadow: 0 5px 15px rgba(2,132,199,.35);
 }
 
-.stCheckbox label{
-    font-size:18px !important;
-    font-weight:500;
+.stButton>button:hover {
+    transform: translateY(-2px);
 }
 
 /* =======================================================
-   زر بدء الفحص
+   6. صندوق رفع الصورة (معرب بالكامل ومحمي من التداخل)
 ======================================================= */
-
-.stButton>button{
-    width:100%;
-    background:linear-gradient(90deg,#0284c7,#0ea5e9);
-    color:white !important;
-    font-size:22px !important;
-    font-weight:700;
-    border:none;
-    border-radius:50px;
-    padding:14px;
-    transition:.3s;
-    box-shadow:0 5px 15px rgba(2,132,199,.35);
+[data-testid="stFileUploader"] {
+    direction: rtl !important;
 }
 
-.stButton>button:hover{
-    transform:translateY(-2px);
+/* تصميم الصندوق نفسه */
+[data-testid="stFileUploadDropzone"] {
+    border: 3px dashed #0ea5e9 !important;
+    border-radius: 18px !important;
+    background: #f8fcff !important;
+    padding: 30px 20px !important;
+    transition: .3s;
+    text-align: center !important;
+}
+
+[data-testid="stFileUploadDropzone"]:hover {
+    background: #eef9ff !important;
+    border-color: #0284c7 !important;
+}
+
+/* إخفاء النصوص الإنجليزية القديمة (مثل Drag and drop) */
+[data-testid="stFileUploadDropzone"] > div > span,
+[data-testid="stFileUploadDropzone"] > div > small {
+    display: none !important;
+}
+
+/* رسالة التوجيه العربية داخل الصندوق */
+[data-testid="stFileUploadDropzone"] > div::before {
+    content: "📷 اضغط هنا لاختيار صورة الشامة أو اسحبها إلى هذه المنطقة";
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    color: #0284c7;
+    margin-bottom: 15px;
+    text-align: center !important;
+}
+
+/* زر الرفع الداخلي: إخفاء الكلمة المشوهة */
+[data-testid="stFileUploadDropzone"] button {
+    color: transparent !important;
+    position: relative;
+    background-color: white !important;
+    border: 1px solid #0ea5e9 !important;
+    border-radius: 8px !important;
+    padding: 5px 15px !important;
+}
+
+/* زر الرفع الداخلي: حقن الكلمة العربية النظيفة */
+[data-testid="stFileUploadDropzone"] button::after {
+    content: "تصفح الملفات"; /* النص العربي للزر */
+    color: #0284c7 !important;
+    font-size: 16px !important;
+    font-family: 'Tajawal', sans-serif !important;
+    font-weight: 700;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    visibility: visible !important;
 }
 
 /* =======================================================
-   صندوق رفع الصورة
+   7. بطاقات الفريق
 ======================================================= */
-
-
-
-
-/* =======================================================
-   بطاقات الفريق
-======================================================= */
-
-.team-card{
-    background:#f8fafc;
-    padding:20px;
-    border-radius:15px;
-    border-right:4px solid #0284c7;
+.team-card {
+    background: #f8fafc;
+    padding: 20px;
+    border-radius: 15px;
+    border-right: 4px solid #0284c7;
 }
 
-.team-title{
-    color:#0284c7;
-    font-size:20px;
-    font-weight:700;
+.team-title {
+    color: #0284c7;
+    font-size: 20px;
+    font-weight: 700;
 }
 
-.team-names{
-    color:#334155;
-    font-size:18px;
-    line-height:2;
+.team-names {
+    color: #334155;
+    font-size: 18px;
+    line-height: 2;
 }
 
-/* =======================================================
-   الرسائل والتنبيهات
-======================================================= */
-
-[data-testid="stAlert"]{
-    font-size:18px !important;
+/* الرسائل والتنبيهات */
+[data-testid="stAlert"] {
+    font-size: 18px !important;
 }
-
 </style>
 """, unsafe_allow_html=True)
 
@@ -181,7 +211,6 @@ h1,h2,h3{
 # 2. القائمة الجانبية (فريق العمل والمدرسة)
 # =========================================================
 with st.sidebar:
-    # تم تغيير الصورة لأيقونة فحص طبي
     st.image("logo.jpeg", width=500) 
     st.markdown("### عن المشروع")
     st.info("نظام تقني يجمع بين دقة الذكاء الاصطناعي والمؤشرات السريرية لدعم الكشف المبكر عن سرطان الجلد.")
@@ -211,14 +240,13 @@ with st.sidebar:
 st.markdown('<div class="title-text">نظام الفحص الأولي لسرطان الجلد</div>', unsafe_allow_html=True)
 st.markdown('<div class="subtitle-text">مشروع: اكتشف مبكراً… لتنقذ حياة 🛡️</div>', unsafe_allow_html=True)
 
-# 1. تحديد المسار المطلق والملف (قراءة مباشرة من نفس المجلد)
+# تحديد المسار المطلق والملف
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 model_name = 'best_skin_cancer_model.keras' 
 model_path = os.path.join(BASE_DIR, model_name)
 
 @st.cache_resource
 def load_students_model():
-    # الترقيع البرمجي الذكي لتفادي مشاكل المسميات بين إصدارات كيرس المختلفة
     try:
         original_input_layer_init = tf.keras.layers.InputLayer.__init__
         def patched_input_layer_init(self, *args, **kwargs):
@@ -228,8 +256,6 @@ def load_students_model():
         tf.keras.layers.InputLayer.__init__ = patched_input_layer_init
     except Exception:
         pass
-
-    # قراءة النموذج مباشرة من الملف
     return tf.keras.models.load_model(model_path, compile=False)
 
 try:
@@ -248,7 +274,6 @@ def is_valid_skin_image(pil_img):
         opencv_img = cv2.cvtColor(opencv_img, cv2.COLOR_RGB2BGR)
         hsv_img = cv2.cvtColor(opencv_img, cv2.COLOR_BGR2HSV)
         
-        # تضييق نطاقات الألوان لتلتقط البشرة الحقيقية فقط وترفض الأخشاب والخلفيات
         lower_skin_1 = np.array([0, 30, 60], dtype=np.uint8)
         upper_skin_1 = np.array([20, 255, 255], dtype=np.uint8)
         
@@ -263,12 +288,11 @@ def is_valid_skin_image(pil_img):
         total_pixels = combined_mask.size
         skin_percentage = (skin_pixels / total_pixels) * 100
         
-        # الشرط الصارم: يجب أن تحتوي الصورة على الأقل 25% من لون البشرة
         return skin_percentage > 25.0
     return False
 
 # =========================================================
-# 5. تقسيم الشاشة إلى عمودين (تصميم عصري)
+# 5. تقسيم الشاشة إلى عمودين
 # =========================================================
 col1, col2 = st.columns([1, 1.2], gap="large")
 
@@ -301,10 +325,9 @@ with col2:
 if uploaded_file is not None and model_loaded:
     if st.button("🚀 بـدء الـفـحـص الـشـامـل"):
         
-        # التحقق الصارم من أن الصورة تحتوي على جلد فعلاً
         if not is_valid_skin_image(user_image):
             st.error("❌ تم إيقاف الفحص: النظام لم يتعرف على أنسجة جلد بشري في الصورة المرفوعة. يرجى التأكد من رفع صورة واضحة ومقربة للشامة على الجلد (لا تقم برفع صور لأشياء أخرى).")
-            st.stop() # هذا الأمر يمنع الكود من إكمال الفحص وإعطاء نتيجة خاطئة
+            st.stop()
             
         with st.spinner("🤖 جاري تحليل الأنسجة وربط البيانات السريرية..."):
             try:
@@ -320,7 +343,6 @@ if uploaded_file is not None and model_loaded:
                 st.markdown("---")
                 st.markdown("### 📊 التقرير الطبي المشترك:")
                 
-                # خوارزمية الدمج بين الصورة والاستبيان
                 if melanoma_probability >= 70 or (melanoma_probability >= 40 and abcde_score >= 3):
                     st.error(f"⚠️ مستوى الخطورة المحتملة: مرتفع")
                     st.write(f"**نسبة الاشتباه (بالذكاء الاصطناعي):** {melanoma_probability:.1f}%")
@@ -342,4 +364,4 @@ if uploaded_file is not None and model_loaded:
                 st.error(f"حدث خطأ غير متوقع أثناء معالجة الصورة: {e}")
 
 st.markdown("---")
-st.caption("🚨 إخلاء مسؤولية: هذا التطبيق هو مخرج لمشروع علمي ابتكاري  ، مخصص لغايات التوعية والفحص الذاتي الأولي فقط، ولا يعتبر بديلاً عن التشخيص الطبي الاحترافي.")
+st.caption("🚨 إخلاء مسؤولية: هذا التطبيق هو مخرج لمشروع علمي ابتكاري ، مخصص لغايات التوعية والفحص الذاتي الأولي فقط، ولا يعتبر بديلاً عن التشخيص الطبي الاحترافي.")
