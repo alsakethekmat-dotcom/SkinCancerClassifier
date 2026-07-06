@@ -142,50 +142,42 @@ h1,h2,h3{
    صندوق رفع الصورة
 ======================================================= */
 
-[data-testid="stFileUploader"]{
-    direction:rtl !important;
+[data-testid="stFileUploader"] {
+    direction: rtl !important;
 }
 
-[data-testid="stFileUploadDropzone"]{
-    border:3px dashed #0ea5e9 !important;
-    border-radius:18px !important;
-    background:#f8fcff !important;
-    padding:40px 20px !important;
-    transition:.3s;
+[data-testid="stFileUploadDropzone"] {
+    border: 3px dashed #0ea5e9 !important;
+    border-radius: 18px !important;
+    background: #f8fcff !important;
+    padding: 30px 20px !important;
+    transition: .3s;
 }
 
-[data-testid="stFileUploadDropzone"]:hover{
-    background:#eef9ff !important;
-    border-color:#0284c7 !important;
+[data-testid="stFileUploadDropzone"]:hover {
+    background: #eef9ff !important;
+    border-color: #0284c7 !important;
 }
 
-[data-testid="stFileUploadDropzone"] div{
-    text-align:center !important;
+/* ===== إصلاح زر Browse ===== */
+
+[data-testid="stFileUploadDropzone"] button {
+    position: relative !important;
+    color: transparent !important;
 }
 
-/* إخفاء النص الإنجليزي */
-
-[data-testid="stFileUploadDropzone"] span,
-[data-testid="stFileUploadDropzone"] small{
-    display:none !important;
+/* إخفاء جميع العناصر داخل الزر */
+[data-testid="stFileUploadDropzone"] button * {
+    display: none !important;
 }
 
-/* كتابة رسالة عربية كبيرة وواضحة */
-
-[data-testid="stFileUploadDropzone"]::before{
-
-content:"📷 اضغط هنا لاختيار صورة الشامة أو اسحبها إلى هذه المنطقة";
-
-display:block;
-
-font-size:22px;
-
-font-weight:700;
-
-color:#0284c7;
-
-margin-bottom:10px;
-
+/* إنشاء النص الجديد */
+[data-testid="stFileUploadDropzone"] button::before {
+    content: "Browse";
+    color: #111827;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: Arial, sans-serif;
 }
 
 /* =======================================================
