@@ -7,7 +7,7 @@ import cv2
 import os
 
 # =========================================================
-# 1. إعدادات الصفحة والتصميم البصري العصري (Modern UI)
+# 1. إعدادات الصفحة والتصميم البصري المعاصر (Premium UI)
 # =========================================================
 st.set_page_config(
     page_title="نظام الفحص الذكي - اكتشف مبكراً",
@@ -34,12 +34,12 @@ def go_home():
     st.session_state.user_image = None
     st.rerun()
 
-# كود CSS المطور لتحسين الخطوط، الألوان، وتوسيط الأزرار
+# كود الـ CSS الثوري لتحويل المنصة إلى تطبيق ذكي عصري مدمج وبدون فراغات ميتة
 st.markdown("""
     <style>
 @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700;800&display=swap');
 
-/* الخط والاتجاه العام - جعل النصوص حادة وداكنة جداً */
+/* ضبط الخطوط والاتجاهات الشاملة */
 * {
     font-family: 'Tajawal', sans-serif !important;
 }
@@ -51,20 +51,92 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stMarkdownContaine
 }
 
 body {
-    background: #f4f7f6 !important;
+    background: #f8fafc !important; /* خلفية ناعمة مريحة جداً للعين */
 }
 
-/* حل مشكلة الخطوط الباهتة والصغيرة (تكبير وتغميق كلي) */
-p, li, span, .stMarkdown {
-    font-size: 20px !important;
-    color: #0f172a !important; /* أسود داكن ملكي شديد الوضوح */
+/* التخلص التام من الفراغات الميتة بأعلى وأسفل الصفحة */
+[data-testid="stAppViewBlockContainer"] {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+    max-width: 1250px !important;
+}
+
+/* محاذاة أفقية متناسقة لعناصر الـ Header والصفوف */
+[data-testid="stHorizontalBlock"] {
+    align-items: center !important;
+    gap: 25px !important;
+}
+
+/* نصوص وعناوين الهيدر الرئيسي المدمج بجانب اللوغو */
+.main-title {
+    font-size: 2.6rem !important;
+    font-weight: 800 !important;
+    color: #0f766e !important; /* لون تركواز طبي فاخر متسق مع الهوية */
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.2 !important;
+}
+
+.main-subtitle {
+    color: #334155 !important;
+    font-size: 1.3rem !important;
+    font-weight: 700 !important;
+    margin-top: 8px !important;
+    margin-bottom: 0 !important;
+}
+
+/* تصميم البطاقات العصرية (عن النظام وفريق العمل) */
+.custom-card {
+    background: white !important;
+    padding: 25px !important;
+    border-radius: 20px !important;
+    box-shadow: 0 10px 25px rgba(15, 118, 110, 0.04) !important;
+    border: 1px solid #e2e8f0 !important;
+    transition: all 0.3s ease !important;
+    height: 100%;
+}
+
+.custom-card:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 12px 30px rgba(15, 118, 110, 0.08) !important;
+}
+
+.info-card {
+    border-right: 6px solid #0f766e !important;
+}
+
+.team-card {
+    border-right: 6px solid #0284c7 !important;
+}
+
+.card-title {
+    font-size: 22px !important;
+    font-weight: 800 !important;
+    color: #0f172a !important;
+    margin-bottom: 12px !important;
+    display: flex;
+    align-items: center;
+}
+
+.card-body-text {
+    font-size: 18px !important;
+    color: #475569 !important;
     line-height: 1.8 !important;
     font-weight: 500 !important;
 }
 
-/* تخصيص نصوص الأسئلة داخل الستبيان لتكون بارزة جداً */
+.card-body-text ul {
+    padding-right: 20px !important;
+    margin: 0 !important;
+}
+
+.card-body-text li {
+    margin-bottom: 6px !important;
+}
+
+/* تكبير وتوضيح نصوص الاستبيان بالصفحات الأخرى */
 .stCheckbox label p {
-    font-size: 20px !important;
+    font-size: 19px !important;
     color: #0f172a !important;
     font-weight: 700 !important;
 }
@@ -74,108 +146,72 @@ p, li, span, .stMarkdown {
     padding: 15px 20px;
     border-radius: 12px;
     border: 1px solid #cbd5e1;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-    margin-bottom: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+    margin-bottom: 10px;
 }
 
-/* إخلاء المسؤولية والتنبيهات الفرعية لجعلها واضحة وغير باهتة */
-.stCaption, p.small-text {
-    font-size: 16px !important;
-    color: #334155 !important;
-    font-weight: 700 !important;
+/* 1. تصميم زر البداية الاحترافي الممركز بالمنتصف تماماً وعالي التباين */
+.center-btn-wrapper {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    margin-top: 35px !important;
 }
 
-/* العناوين الأساسية الكبيرة */
-.title-text {
-    font-size: 2.5rem;
-    font-weight: 800;
-    background: -webkit-linear-gradient(45deg,#0369a1,#0284c7);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-align: center !important;
-    margin-bottom: 5px;
-}
-
-.subtitle-text {
-    color: #1e293b;
-    font-size: 1.3rem;
-    font-weight: 700;
-    text-align: center !important;
-    margin-bottom: 25px;
-}
-
-/* 1. زر البداية: ممركز في المنتصف تماماً بلون متباين داكن وفخم */
-.start-btn-container {
-    text-align: center !important;
-    margin: 30px auto !important;
-    width: 100%;
-}
-
-.start-btn-container .stButton > button {
-    width: auto !important;
-    min-width: 350px !important; /* حجم عريض ومتناسق دون التمدد الكامل */
-    background: linear-gradient(90deg, #1e3a8a, #0284c7) !important; /* لون أزرق داكن متباين وقوي */
+.center-btn-wrapper .stButton button {
+    background: linear-gradient(135deg, #0f766e 0%, #0284c7 100%) !important;
     color: white !important;
-    font-size: 22px !important;
+    font-size: 24px !important;
     font-weight: 800 !important;
-    border: none !important;
+    padding: 16px 60px !important;
     border-radius: 50px !important;
-    padding: 14px 40px !important;
-    transition: .3s !important;
-    box-shadow: 0 8px 20px rgba(30, 58, 138, 0.3) !important;
-    display: inline-block !important;
+    border: none !important;
+    box-shadow: 0 10px 25px rgba(15, 118, 110, 0.3) !important;
+    transition: all 0.3s ease !important;
+    cursor: pointer !important;
 }
 
-.start-btn-container .stButton > button:hover {
-    transform: translateY(-3px) !important;
-    box-shadow: 0 12px 25px rgba(30, 58, 138, 0.45) !important;
-    background: linear-gradient(90deg, #1d4ed8, #0369a1) !important;
+.center-btn-wrapper .stButton button:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 15px 35px rgba(15, 118, 110, 0.45) !important;
+    filter: brightness(1.1) !important;
 }
 
-/* 2. أزرار الانتقال والفحص بداخل الصفحات الأخرى */
+/* 2. أزرار الانتقال داخل الصفحات اللاحقة */
 .main-btn .stButton>button {
     width: 100% !important;
-    background: linear-gradient(90deg,#0284c7,#0ea5e9) !important;
+    background: linear-gradient(90deg, #0f766e, #0284c7) !important;
     color: white !important;
     font-size: 21px !important;
     font-weight: 700 !important;
     border: none !important;
     border-radius: 50px !important;
     padding: 14px !important;
-    transition: .3s !important;
-    box-shadow: 0 5px 15px rgba(2,132,199,.35) !important;
+    box-shadow: 0 5px 15px rgba(15, 118, 110, 0.25) !important;
 }
 
-/* 3. زر العودة للرئيسية في الهيدر العلوي */
+/* 3. زر العودة للرئيسية المتناسق */
 .nav-btn .stButton>button {
     width: auto !important;
     background: white !important;
-    color: #1e3a8a !important;
-    border: 2px solid #1e3a8a !important;
+    color: #0f766e !important;
+    border: 2px solid #0f766e !important;
     font-size: 15px !important;
     font-weight: 700 !important;
     padding: 6px 18px !important;
     border-radius: 8px !important;
-    transition: 0.2s;
 }
 .nav-btn .stButton>button:hover {
-    background: #f0f5ff !important;
-    border-color: #1d4ed8 !important;
+    background: #f0fdfa !important;
 }
 
-/* صندوق رفع الملفات الاحترافي */
+/* صندوق رفع الملفات الطبي العصري */
 .stFileUploader section {
-    border: 3px dashed #0ea5e9 !important;
+    border: 3px dashed #0f766e !important;
     border-radius: 20px !important;
-    background-color: #f0f9ff !important;
+    background-color: #f0fdfa !important;
     padding: 35px 20px !important;
-}
-
-.stFileUploader section text,
-.stFileUploader section span,
-.stFileUploader section small,
-.stFileUploader section div div {
-    display: none !important;
 }
 
 .stFileUploader section::before {
@@ -183,17 +219,16 @@ p, li, span, .stMarkdown {
     display: block !important;
     font-size: 18px !important;
     font-weight: 700 !important;
-    color: #0369a1 !important;
+    color: #0f766e !important;
     text-align: center !important;
     margin-bottom: 15px !important;
 }
 
 .stFileUploader button {
-    background: linear-gradient(90deg, #0ea5e9, #0284c7) !important;
+    background: linear-gradient(90deg, #0f766e, #0284c7) !important;
     border: none !important;
     border-radius: 12px !important;
     padding: 20px 50px !important;
-    cursor: pointer !important;
     color: transparent !important;
     font-size: 0px !important;
     margin: 0 auto !important;
@@ -209,26 +244,6 @@ p, li, span, .stMarkdown {
     left: 50% !important;
     top: 50% !important;
     transform: translate(-50%, -50%) !important;
-}
-
-/* بطاقة تعريف فريق العمل */
-.team-container {
-    background: white;
-    padding: 18px 22px;
-    border-radius: 15px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.04);
-    border-right: 6px solid #1e3a8a;
-}
-.team-title {
-    color: #1e3a8a;
-    font-size: 19px;
-    font-weight: 700;
-    margin-bottom: 8px;
-}
-.team-text {
-    font-size: 16px !important;
-    color: #1e293b !important;
-    margin-bottom: 4px !important;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -274,62 +289,78 @@ def is_valid_skin_image(pil_img):
 
 
 # =========================================================
-# 3. الإطار العلوي الثابت المتعاكس (Header)
+# 3. الإطار العلوي الثابت المتعاكس (Header) - يظهر بالصفحات الداخلية
 # =========================================================
 if st.session_state.page != 'home':
     header_btn, header_title, header_logo = st.columns([1.5, 4, 1.5])
     with header_logo:
-        st.image("logo.jpeg", width=85) 
+        st.image("logo.jpeg", width=110) # حجم مثالي وواضح بالزاوية اليمنى
     with header_title:
-        st.markdown("<h3 style='color:#1e3a8a; margin-top:18px; text-align:right; font-weight:800;'>نظام الفحص الأولي الذكي</h3>", unsafe_allow_html=True)
+        st.markdown("<h2 style='color:#0f766e; margin-top:25px; text-align:right; font-weight:800;'>نظام الفحص الأولي الذكي</h2>", unsafe_allow_html=True)
     with header_btn:
-        st.markdown('<div class="nav-btn" style="margin-top:18px; text-align:left;">', unsafe_allow_html=True)
+        st.markdown('<div class="nav-btn" style="margin-top:28px; text-align:left;">', unsafe_allow_html=True)
         if st.button("🏠 العودة للرئيسية", key="nav_to_home_logo"):
             go_home()
         st.markdown('</div>', unsafe_allow_html=True)
-    st.markdown("<hr style='margin-top:5px; margin-bottom:25px; border-color: #cbd5e1;'>", unsafe_allow_html=True)
+    st.markdown("<hr style='margin-top:10px; margin-bottom:30px; border-color: #cbd5e1;'>", unsafe_allow_html=True)
 
 
 # =========================================================
-# 4. منطق عرض الصفحات المتتابعة
+# 4. منطق عرض وتنسيق الصفحات المتتابعة
 # =========================================================
 
-# ----------------- [صفحة 1: الصفحة الرئيسية المدمجة] -----------------
+# ----------------- [صفحة 1: الصفحة الرئيسية المحدثة بالكامل] -----------------
 if st.session_state.page == 'home':
-    c1, c2, c3 = st.columns([2, 0.8, 2])
-    with c2:
-        st.image("logo.jpeg", width=110)
+    # تجميع اللوغو والعناوين في خط أفقي واحد متميز لتوفير المساحة ومنع تشتت الفراغات
+    col_title_text, col_main_logo = st.columns([4, 1])
     
-    st.markdown('<div class="title-text">نظام الفحص الأولي لسرطان الجلد</div>', unsafe_allow_html=True)
-    st.markdown('<div class="subtitle-text">مشروع ابتكاري: اكتشف مبكراً… لتنقذ حياة 🛡️</div>', unsafe_allow_html=True)
+    with col_main_logo:
+        st.image("logo.jpeg", width=160) # تكبير الشعار بشكل مناسب ومحاذاته تماماً لليمين
+        
+    with col_title_text:
+        st.markdown('<h1 class="main-title">نظام الفحص الأولي لسرطان الجلد</h1>', unsafe_allow_html=True)
+        st.markdown('<p class="main-subtitle">مشروع ابتكاري متميز: اكتشف مبكراً… لتنقذ حياة 🛡️</p>', unsafe_allow_html=True)
     
-    col_info, col_team = st.columns([1.2, 1], gap="medium")
+    st.markdown("<br><br>", unsafe_allow_html=True)
+    
+    # بطاقات العرض الذكية بتنسيق شبكي عصري وجذاب
+    col_info, col_team = st.columns([1.1, 0.9])
     
     with col_info:
-        st.markdown("<h4 style='color:#1e3a8a; margin-top:0; font-weight:700;'>🔬 عن النظام</h4>", unsafe_allow_html=True)
-        st.info("نظام تقني ذكي يجمع بين دقة خوارزميات الذكاء الاصطناعي والمؤشرات السريرية المعتمدة عالمياً لدعم الكشف المبكر عن آفات الجلد وشاماته بكل خصوصية وسهولة وبأعلى درجات الأمان الطبي.")
+        st.markdown("""
+        <div class="custom-card info-card">
+            <div class="card-title">🔬 عن النظام الذكي</div>
+            <div class="card-body-text">
+                نظام تقني متطور يدمج بين دقة خوارزميات الذكاء الاصطناعي العميقة والمؤشرات السريرية المعتمدة عالمياً لدعم الكشف المبكر عن آفات الجلد وشاماته بكل خصوصية وسهولة وبأعلى درجات الأمان الطبي المتكامل.
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
     
     with col_team:
         st.markdown("""
-        <div class="team-container">
-            <div class="team-title">👥 بطاقة تعريفية</div>
-            <p class="team-text"><b>👩‍💻 الطالبات:</b> سما، رنيم، جود، فرح، نورسين</p>
-            <p class="team-text"><b>👩‍🏫 الإشراف:</b> المعلمة أماني أبو رمان</p>
-            <p class="team-text"><b>🏫 المدرسة:</b> حكمت الساكت الأساسية</p>
+        <div class="custom-card team-card">
+            <div class="card-title">👥 بطاقة تعريفية بالمشروع</div>
+            <div class="card-body-text">
+                <ul>
+                    <li><b>👩‍💻 الطالبات المبتكرات:</b> سما، رنيم، جود، فرح، نورسين</li>
+                    <li><b>👩‍🏫 الإشراف المتميز:</b> المعلمة أماني أبو رمان</li>
+                    <li><b>🏫 صرح المدرسة:</b> حكمت الساكت الأساسية</li>
+                </ul>
+            </div>
         </div>
         """, unsafe_allow_html=True)
         
-    # وضع زر البداية في حاوية ممركزة ومستقلة بلون متباين داكن
-    st.markdown('<div class="start-btn-container">', unsafe_allow_html=True)
-    if st.button("🚀 ابـدء الـتـحـقـق والـفـحـص الآن"):
+    # الحاوية الممركزة لزر الدخول الجديد والمصمم باحترافية كاملة
+    st.markdown('<div class="center-btn-wrapper">', unsafe_allow_html=True)
+    if st.button("🚀 ابـدء الـتـحـقـق والـفـحـص الآن", key="main_start_trigger"):
         st.session_state.page = 'survey'
         st.rerun()
     st.markdown('</div>', unsafe_allow_html=True)
 
 # ----------------- [صفحة 2: استبيان ABCDE السريري] -----------------
 elif st.session_state.page == 'survey':
-    st.markdown("<h2 style='color:#1e3a8a; font-weight:800;'>📋 الخطوة الأولى: التقييم السريري (ABCDE)</h2>", unsafe_allow_html=True)
-    st.write("الرجاء الإجابة على الأسئلة التالية بناءً على ملاحظتك البصرية للشامة الحالية:")
+    st.markdown("<h2 style='color:#0f766e; font-weight:800;'>📋 الخطوة الأولى: التقييم السريري (ABCDE)</h2>", unsafe_allow_html=True)
+    st.markdown("<p style='font-size:18px; color:#475569;'>الرجاء الإجابة على الأسئلة التالية بناءً على ملاحظتك البصرية للشامة الحالية:</p>", unsafe_allow_html=True)
     st.markdown("<br>", unsafe_allow_html=True)
     
     a = st.checkbox("A - عدم التماثل: هل شكل الشامة غير متماثل (إذا قسمتها من المنتصف لا يتطابق النصفان)؟")
@@ -340,7 +371,6 @@ elif st.session_state.page == 'survey':
     
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown('<div class="main-btn">', unsafe_allow_html=True)
-    # تعديل اتجاه السهم لليسار ليناسب القراءة العربية المتقدمة للأمام
     if st.button("حفظ الإجابات والانتقال لرفع الصورة ⬅️"):
         st.session_state.abcde_score = sum([a, b, c, d, e])
         st.session_state.page = 'upload'
@@ -349,8 +379,8 @@ elif st.session_state.page == 'survey':
 
 # ----------------- [صفحة 3: رفع الصورة وتحليلها] -----------------
 elif st.session_state.page == 'upload':
-    st.markdown("<h2 style='color:#1e3a8a; font-weight:800;'>📸 الخطوة الثانية: الفحص الرقمي (الذكاء الاصطناعي)</h2>", unsafe_allow_html=True)
-    st.write("الرجاء رفع صورة قريبة جداً وواضحة للشامة المستهدفة:")
+    st.markdown("<h2 style='color:#0f766e; font-weight:800;'>📸 الخطوة الثانية: الفحص الرقمي (الذكاء الاصطناعي)</h2>", unsafe_allow_html=True)
+    st.markdown("<p style='font-size:18px; color:#475569;'>الرجاء رفع صورة قريبة جداً وواضحة للشامة المستهدفة:</p>", unsafe_allow_html=True)
     
     if not model_loaded:
         st.error("🚨 خطأ تقني: لم يتم تحميل ملف ذكاء اصطناعي صالح كـ 'best_skin_cancer_model.keras'.")
@@ -387,7 +417,7 @@ elif st.session_state.page == 'upload':
 
 # ----------------- [صفحة 4: التقرير الطبي والنتيجة النهائية] -----------------
 elif st.session_state.page == 'result':
-    st.markdown("<h2 style='color:#1e3a8a; font-weight:800;'>📊 التقرير الطبي المشترك والنتيجة النهائية</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='color:#0f766e; font-weight:800;'>📊 التقرير الطبي المشترك والنتيجة النهائية</h2>", unsafe_allow_html=True)
     
     abcde_score = st.session_state.abcde_score
     melanoma_probability = st.session_state.prediction * 100
