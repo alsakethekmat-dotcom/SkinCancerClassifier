@@ -38,14 +38,12 @@ label,
 p,
 span,
 div,
-button,
 input,
 textarea {
     font-family: 'Tajawal', sans-serif !important;
     direction: rtl !important;
     text-align: right !important;
 }
-
 body{
     background:#f4f7f6 !important;
 }
