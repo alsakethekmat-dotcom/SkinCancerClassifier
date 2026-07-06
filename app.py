@@ -13,7 +13,7 @@ st.set_page_config(
     page_title="نظام الفحص الذكي - اكتشف مبكراً",
     page_icon="🔬", 
     layout="wide", 
-    initial_sidebar_state="collapsed" # إخفاء القائمة الجانبية تماماً لمظهر عصري
+    initial_sidebar_state="collapsed"
 )
 
 # إدارة الصفحات والحالة عبر الـ Session State
@@ -34,12 +34,12 @@ def go_home():
     st.session_state.user_image = None
     st.rerun()
 
-# كود CSS المطور لحل مشاكل الأبعاد والجمود والضغط تماماً
+# كود CSS المطور لتحسين الخطوط، الألوان، وتوسيط الأزرار
 st.markdown("""
     <style>
-@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700;800&display=swap');
 
-/* الخط والاتجاه العام */
+/* الخط والاتجاه العام - جعل النصوص حادة وداكنة جداً */
 * {
     font-family: 'Tajawal', sans-serif !important;
 }
@@ -54,90 +54,121 @@ body {
     background: #f4f7f6 !important;
 }
 
-/* العناوين الأساسية المدمجة لعدم إحداث سكرول */
-.title-text {
-    font-size: 2.2rem;
-    font-weight: 800;
-    background: -webkit-linear-gradient(45deg,#0284c7,#0ea5e9);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-align: center !important;
-    margin-bottom: 2px;
+/* حل مشكلة الخطوط الباهتة والصغيرة (تكبير وتغميق كلي) */
+p, li, span, .stMarkdown {
+    font-size: 20px !important;
+    color: #0f172a !important; /* أسود داكن ملكي شديد الوضوح */
+    line-height: 1.8 !important;
+    font-weight: 500 !important;
 }
 
-.subtitle-text {
-    color: #475569;
-    font-size: 1.1rem;
-    font-weight: 600;
-    text-align: center !important;
-    margin-bottom: 20px;
-}
-
-/* حجم خطوط النصوص والاستبيان */
-p, label, li, span, .stMarkdown, .stCaption {
-    font-size: 17px !important;
-    line-height: 1.7;
+/* تخصيص نصوص الأسئلة داخل الستبيان لتكون بارزة جداً */
+.stCheckbox label p {
+    font-size: 20px !important;
+    color: #0f172a !important;
+    font-weight: 700 !important;
 }
 
 .stCheckbox {
     background: white;
-    padding: 12px 18px;
+    padding: 15px 20px;
     border-radius: 12px;
-    border: 1px solid #edf2f7;
-    box-shadow: 0 4px 10px rgba(0,0,0,.03);
-    margin-bottom: 8px;
+    border: 1px solid #cbd5e1;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    margin-bottom: 12px;
 }
 
-/* 1. الأزرار الأساسية الكبيرة (تم حصرها في كلاس مخصص لكي لا تخرب بقية الأزرار) */
+/* إخلاء المسؤولية والتنبيهات الفرعية لجعلها واضحة وغير باهتة */
+.stCaption, p.small-text {
+    font-size: 16px !important;
+    color: #334155 !important;
+    font-weight: 700 !important;
+}
+
+/* العناوين الأساسية الكبيرة */
+.title-text {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: -webkit-linear-gradient(45deg,#0369a1,#0284c7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center !important;
+    margin-bottom: 5px;
+}
+
+.subtitle-text {
+    color: #1e293b;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-align: center !important;
+    margin-bottom: 25px;
+}
+
+/* 1. زر البداية: ممركز في المنتصف تماماً بلون متباين داكن وفخم */
+.start-btn-container {
+    text-align: center !important;
+    margin: 30px auto !important;
+    width: 100%;
+}
+
+.start-btn-container .stButton > button {
+    width: auto !important;
+    min-width: 350px !important; /* حجم عريض ومتناسق دون التمدد الكامل */
+    background: linear-gradient(90deg, #1e3a8a, #0284c7) !important; /* لون أزرق داكن متباين وقوي */
+    color: white !important;
+    font-size: 22px !important;
+    font-weight: 800 !important;
+    border: none !important;
+    border-radius: 50px !important;
+    padding: 14px 40px !important;
+    transition: .3s !important;
+    box-shadow: 0 8px 20px rgba(30, 58, 138, 0.3) !important;
+    display: inline-block !important;
+}
+
+.start-btn-container .stButton > button:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 12px 25px rgba(30, 58, 138, 0.45) !important;
+    background: linear-gradient(90deg, #1d4ed8, #0369a1) !important;
+}
+
+/* 2. أزرار الانتقال والفحص بداخل الصفحات الأخرى */
 .main-btn .stButton>button {
     width: 100% !important;
     background: linear-gradient(90deg,#0284c7,#0ea5e9) !important;
     color: white !important;
-    font-size: 20px !important;
+    font-size: 21px !important;
     font-weight: 700 !important;
     border: none !important;
     border-radius: 50px !important;
-    padding: 12px !important;
+    padding: 14px !important;
     transition: .3s !important;
     box-shadow: 0 5px 15px rgba(2,132,199,.35) !important;
 }
 
-.main-btn .stButton>button:hover {
-    transform: translateY(-2px) !important;
-    box-shadow: 0 8px 20px rgba(2,132,199,.45) !important;
-}
-
-/* 2. زر العودة للرئيسية (أنيق، صغير، وفي الزاوية المقابلة دون تمطيط) */
+/* 3. زر العودة للرئيسية في الهيدر العلوي */
 .nav-btn .stButton>button {
     width: auto !important;
     background: white !important;
-    color: #0284c7 !important;
-    border: 1px solid #0ea5e9 !important;
-    font-size: 14px !important;
+    color: #1e3a8a !important;
+    border: 2px solid #1e3a8a !important;
+    font-size: 15px !important;
     font-weight: 700 !important;
-    padding: 6px 16px !important;
+    padding: 6px 18px !important;
     border-radius: 8px !important;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05) !important;
     transition: 0.2s;
 }
 .nav-btn .stButton>button:hover {
-    background: #f0f9ff !important;
-    color: #0284c7 !important;
-    border-color: #0284c7 !important;
+    background: #f0f5ff !important;
+    border-color: #1d4ed8 !important;
 }
 
-/* تنسيق صندوق رفع الملفات الاحترافي والمعرب */
-.stFileUploader {
-    direction: rtl !important;
-    text-align: right !important;
-}
-
+/* صندوق رفع الملفات الاحترافي */
 .stFileUploader section {
     border: 3px dashed #0ea5e9 !important;
     border-radius: 20px !important;
     background-color: #f0f9ff !important;
     padding: 35px 20px !important;
-    transition: all 0.3s ease-in-out !important;
 }
 
 .stFileUploader section text,
@@ -150,7 +181,7 @@ p, label, li, span, .stMarkdown, .stCaption {
 .stFileUploader section::before {
     content: "📷 اسحب صورة الشامة هنا أو اضغط على الزر بالأسفل" !important;
     display: block !important;
-    font-size: 17px !important;
+    font-size: 18px !important;
     font-weight: 700 !important;
     color: #0369a1 !important;
     text-align: center !important;
@@ -163,45 +194,41 @@ p, label, li, span, .stMarkdown, .stCaption {
     border-radius: 12px !important;
     padding: 20px 50px !important;
     cursor: pointer !important;
-    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.25) !important;
-    transition: all 0.3s !important;
-    position: relative !important;
-    display: block !important;
-    margin: 0 auto !important;
     color: transparent !important;
     font-size: 0px !important;
+    margin: 0 auto !important;
+    display: block !important;
 }
 
 .stFileUploader button::after {
     content: "اختيار صورة من الجهاز 📂" !important;
     color: white !important;
-    font-size: 15px !important;
+    font-size: 16px !important;
     font-weight: 700 !important;
     position: absolute !important;
     left: 50% !important;
     top: 50% !important;
     transform: translate(-50%, -50%) !important;
-    white-space: nowrap !important;
 }
 
-/* بطاقة فريق العمل المدمجة جداً لمنع السكرول */
+/* بطاقة تعريف فريق العمل */
 .team-container {
     background: white;
-    padding: 15px 20px;
+    padding: 18px 22px;
     border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.03);
-    border-right: 5px solid #0284c7;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+    border-right: 6px solid #1e3a8a;
 }
 .team-title {
-    color: #0284c7;
-    font-size: 18px;
+    color: #1e3a8a;
+    font-size: 19px;
     font-weight: 700;
     margin-bottom: 8px;
 }
 .team-text {
-    font-size: 15px !important;
+    font-size: 16px !important;
+    color: #1e293b !important;
     margin-bottom: 4px !important;
-    line-height: 1.5 !important;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -247,21 +274,20 @@ def is_valid_skin_image(pil_img):
 
 
 # =========================================================
-# 3. الإطار العلوي الثابت المتعاكس (Header) - يظهر خارج الرئيسية
+# 3. الإطار العلوي الثابت المتعاكس (Header)
 # =========================================================
 if st.session_state.page != 'home':
-    # تقسيم متوازن: زر العودة في أقصى اليسار، العنوان في الوسط، واللوغو في أقصى اليمين بدون انضغاط
     header_btn, header_title, header_logo = st.columns([1.5, 4, 1.5])
     with header_logo:
-        st.image("logo.jpeg", width=85) # حجم ثابت ومحمي تماماً من الضغط والتشويه
+        st.image("logo.jpeg", width=85) 
     with header_title:
-        st.markdown("<h3 style='color:#0284c7; margin-top:18px; text-align:right;'>نظام الفحص الأولي الذكي</h3>", unsafe_allow_html=True)
+        st.markdown("<h3 style='color:#1e3a8a; margin-top:18px; text-align:right; font-weight:800;'>نظام الفحص الأولي الذكي</h3>", unsafe_allow_html=True)
     with header_btn:
         st.markdown('<div class="nav-btn" style="margin-top:18px; text-align:left;">', unsafe_allow_html=True)
         if st.button("🏠 العودة للرئيسية", key="nav_to_home_logo"):
             go_home()
         st.markdown('</div>', unsafe_allow_html=True)
-    st.markdown("<hr style='margin-top:5px; margin-bottom:20px;'>", unsafe_allow_html=True)
+    st.markdown("<hr style='margin-top:5px; margin-bottom:25px; border-color: #cbd5e1;'>", unsafe_allow_html=True)
 
 
 # =========================================================
@@ -270,33 +296,31 @@ if st.session_state.page != 'home':
 
 # ----------------- [صفحة 1: الصفحة الرئيسية المدمجة] -----------------
 if st.session_state.page == 'home':
-    # عرض اللوغو في الأعلى بحجم مدمج وأنيق
     c1, c2, c3 = st.columns([2, 0.8, 2])
     with c2:
-        st.image("logo.jpeg", width=120)
+        st.image("logo.jpeg", width=110)
     
     st.markdown('<div class="title-text">نظام الفحص الأولي لسرطان الجلد</div>', unsafe_allow_html=True)
     st.markdown('<div class="subtitle-text">مشروع ابتكاري: اكتشف مبكراً… لتنقذ حياة 🛡️</div>', unsafe_allow_html=True)
     
-    # التوزيع الأفقي الذكي لملء الشاشة ومنع السكرول
     col_info, col_team = st.columns([1.2, 1], gap="medium")
     
     with col_info:
-        st.markdown("<h4 style='color:#0284c7; margin-top:0;'>🔬 عن النظام</h4>", unsafe_allow_html=True)
+        st.markdown("<h4 style='color:#1e3a8a; margin-top:0; font-weight:700;'>🔬 عن النظام</h4>", unsafe_allow_html=True)
         st.info("نظام تقني ذكي يجمع بين دقة خوارزميات الذكاء الاصطناعي والمؤشرات السريرية المعتمدة عالمياً لدعم الكشف المبكر عن آفات الجلد وشاماته بكل خصوصية وسهولة وبأعلى درجات الأمان الطبي.")
     
     with col_team:
         st.markdown("""
         <div class="team-container">
             <div class="team-title">👥 بطاقة تعريفية</div>
-            <p class="team-text"><b>👩‍💻 الطالبات:</b> سما، رنيم، جود， فرح، نورسين</p>
+            <p class="team-text"><b>👩‍💻 الطالبات:</b> سما، رنيم، جود، فرح، نورسين</p>
             <p class="team-text"><b>👩‍🏫 الإشراف:</b> المعلمة أماني أبو رمان</p>
             <p class="team-text"><b>🏫 المدرسة:</b> حكمت الساكت الأساسية</p>
         </div>
         """, unsafe_allow_html=True)
         
-    st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown('<div class="main-btn">', unsafe_allow_html=True)
+    # وضع زر البداية في حاوية ممركزة ومستقلة بلون متباين داكن
+    st.markdown('<div class="start-btn-container">', unsafe_allow_html=True)
     if st.button("🚀 ابـدء الـتـحـقـق والـفـحـص الآن"):
         st.session_state.page = 'survey'
         st.rerun()
@@ -304,8 +328,9 @@ if st.session_state.page == 'home':
 
 # ----------------- [صفحة 2: استبيان ABCDE السريري] -----------------
 elif st.session_state.page == 'survey':
-    st.markdown("## 📋 الخطوة الأولى: التقييم السريري (ABCDE)")
+    st.markdown("<h2 style='color:#1e3a8a; font-weight:800;'>📋 الخطوة الأولى: التقييم السريري (ABCDE)</h2>", unsafe_allow_html=True)
     st.write("الرجاء الإجابة على الأسئلة التالية بناءً على ملاحظتك البصرية للشامة الحالية:")
+    st.markdown("<br>", unsafe_allow_html=True)
     
     a = st.checkbox("A - عدم التماثل: هل شكل الشامة غير متماثل (إذا قسمتها من المنتصف لا يتطابق النصفان)؟")
     b = st.checkbox("B - الحدود: هل أطراف الشامة الخارجية متعرجة، خشنة، أو غير منتظمة؟")
@@ -315,7 +340,8 @@ elif st.session_state.page == 'survey':
     
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown('<div class="main-btn">', unsafe_allow_html=True)
-    if st.button("حفظ الإجابات والانتقال لرفع الصورة ➡️"):
+    # تعديل اتجاه السهم لليسار ليناسب القراءة العربية المتقدمة للأمام
+    if st.button("حفظ الإجابات والانتقال لرفع الصورة ⬅️"):
         st.session_state.abcde_score = sum([a, b, c, d, e])
         st.session_state.page = 'upload'
         st.rerun()
@@ -323,7 +349,7 @@ elif st.session_state.page == 'survey':
 
 # ----------------- [صفحة 3: رفع الصورة وتحليلها] -----------------
 elif st.session_state.page == 'upload':
-    st.markdown("## 📸 الخطوة الثانية: الفحص الرقمي (الذكاء الاصطناعي)")
+    st.markdown("<h2 style='color:#1e3a8a; font-weight:800;'>📸 الخطوة الثانية: الفحص الرقمي (الذكاء الاصطناعي)</h2>", unsafe_allow_html=True)
     st.write("الرجاء رفع صورة قريبة جداً وواضحة للشامة المستهدفة:")
     
     if not model_loaded:
@@ -334,7 +360,6 @@ elif st.session_state.page == 'upload':
     if uploaded_file is not None:
         st.session_state.user_image = Image.open(uploaded_file)
         
-        # تنسيق عرض الصورة بشكل منظم في المنتصف
         img_c1, img_c2, img_c3 = st.columns([1, 1, 1])
         with img_c2:
             st.image(st.session_state.user_image, caption="الصورة المرفوعة جاهزة للفحص", width=250)
@@ -362,13 +387,12 @@ elif st.session_state.page == 'upload':
 
 # ----------------- [صفحة 4: التقرير الطبي والنتيجة النهائية] -----------------
 elif st.session_state.page == 'result':
-    st.markdown("## 📊 التقرير الطبي المشترك والنتيجة النهائية")
+    st.markdown("<h2 style='color:#1e3a8a; font-weight:800;'>📊 التقرير الطبي المشترك والنتيجة النهائية</h2>", unsafe_allow_html=True)
     
     abcde_score = st.session_state.abcde_score
     melanoma_probability = st.session_state.prediction * 100
     benign_probability = 100 - melanoma_probability
     
-    # خوارزمية تحديد النتيجة الطبية المشتركة
     if melanoma_probability >= 70 or (melanoma_probability >= 40 and abcde_score >= 3):
         st.error(f"⚠️ مستوى الخطورة المحتملة: مرتفع")
         st.write(f"**نسبة الاشتباه المبني على الذكاء الاصطناعي:** {melanoma_probability:.1f}%")
