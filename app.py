@@ -19,108 +19,207 @@ st.set_page_config(
 # كود CSS لواجهة عصرية، تفاعلية، ومريحة للعين
 st.markdown("""
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap');
-    
-    * {
-        font-family: 'Tajawal', sans-serif !important;
-    }
-    
-    /* ضبط الاتجاه للغة العربية */
-    html, body, [data-testid="stAppViewContainer"], .main {
-        direction: rtl !important;
-        text-align: right !important;
-        background-color: #f4f7f6 !important;
-    }
-    
-    /* القائمة الجانبية (Sidebar) */
-    [data-testid="stSidebar"] {
-        background-color: #ffffff !important;
-        border-left: 1px solid #e0e0e0;
-        direction: rtl !important;
-        text-align: right !important;
-    }
-    
-    /* العناوين الرئيسية */
-    .title-text {
-        font-size: 2.8rem;
-        font-weight: 800;
-        background: -webkit-linear-gradient(45deg, #0284c7, #0ea5e9);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        text-align: center;
-        margin-bottom: 5px;
-    }
-    .subtitle-text {
-        color: #475569;
-        font-size: 1.2rem;
-        text-align: center;
-        margin-bottom: 40px;
-        font-weight: 500;
-    }
-    
-    /* تصميم البطاقات (Cards) للاستبيان */
-    .stCheckbox {
-        background: #ffffff;
-        padding: 15px 20px;
-        border-radius: 12px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.04);
-        margin-bottom: 12px;
-        border: 1px solid #f1f5f9;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .stCheckbox:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 12px rgba(2, 132, 199, 0.1);
-        border-color: #bae6fd;
-    }
-    
-    /* زر الفحص العصري */
-    .stButton > button {
-        width: 100%;
-        background: linear-gradient(90deg, #0284c7 0%, #0ea5e9 100%);
-        color: white !important;
-        font-size: 1.4rem !important;
-        font-weight: 700 !important;
-        border-radius: 50px !important;
-        padding: 12px 24px !important;
-        border: none !important;
-        box-shadow: 0 4px 15px rgba(2, 132, 199, 0.4) !important;
-        transition: all 0.3s ease !important;
-        margin-top: 20px;
-    }
-    .stButton > button:hover {
-        transform: scale(1.02);
-        box-shadow: 0 6px 20px rgba(2, 132, 199, 0.6) !important;
-    }
-    
-    /* تصميم معلومات الفريق */
-    .team-card {
-        background: #f8fafc;
-        padding: 20px;
-        border-radius: 15px;
-        border-right: 4px solid #0284c7;
-        margin-top: 20px;
-        text-align: right; /* ضمان اتجاه النص يمين */
-    }
-    .team-title { color: #0284c7; font-weight: 700; margin-bottom: 10px; font-size: 1.1rem; }
-    .team-names { color: #334155; font-size: 1rem; line-height: 1.8; font-weight: 500;}
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap');
 
-    /* حل مشكلة كلمة Upload الإنجليزية */
-    [data-testid="stFileUploadDropzone"] div div::before {
-        content: "اسحب وأفلت الصورة هنا أو اضغط للاستعراض";
-        display: block;
-        font-family: 'Tajawal', sans-serif;
-        color: #475569;
-        font-weight: 600;
-        font-size: 1.1rem;
-    }
-    [data-testid="stFileUploadDropzone"] div div span {
-        display: none !important; 
-    }
-    [data-testid="stFileUploadDropzone"] div div small {
-        display: none !important; 
-    }
-    </style>
+/* =======================================================
+   الخط والاتجاه العام
+======================================================= */
+
+html,
+body,
+[class*="css"],
+[data-testid="stAppViewContainer"],
+[data-testid="stSidebar"],
+[data-testid="stMarkdownContainer"],
+[data-testid="stVerticalBlock"],
+[data-testid="stHorizontalBlock"],
+[data-testid="stFileUploader"],
+label,
+p,
+span,
+div,
+button,
+input,
+textarea {
+    font-family: 'Tajawal', sans-serif !important;
+    direction: rtl !important;
+    text-align: right !important;
+}
+
+body{
+    background:#f4f7f6 !important;
+}
+
+/* =======================================================
+   القائمة الجانبية
+======================================================= */
+
+[data-testid="stSidebar"]{
+    background:#ffffff !important;
+    border-left:1px solid #e5e7eb;
+}
+
+/* =======================================================
+   العنوان
+======================================================= */
+
+.title-text{
+    font-size:2.8rem;
+    font-weight:800;
+    background:-webkit-linear-gradient(45deg,#0284c7,#0ea5e9);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    text-align:center !important;
+    margin-bottom:8px;
+}
+
+.subtitle-text{
+    color:#475569;
+    font-size:1.25rem;
+    font-weight:600;
+    text-align:center !important;
+    margin-bottom:35px;
+}
+
+/* =======================================================
+   حجم الخط العام
+======================================================= */
+
+p,
+label,
+li,
+span,
+.stMarkdown,
+.stCaption{
+    font-size:18px !important;
+    line-height:1.9;
+}
+
+h1,h2,h3{
+    font-weight:700 !important;
+}
+
+/* =======================================================
+   بطاقات الاستبيان
+======================================================= */
+
+.stCheckbox{
+    background:white;
+    padding:16px 20px;
+    border-radius:14px;
+    border:1px solid #edf2f7;
+    box-shadow:0 4px 10px rgba(0,0,0,.05);
+    margin-bottom:12px;
+}
+
+.stCheckbox label{
+    font-size:18px !important;
+    font-weight:500;
+}
+
+/* =======================================================
+   زر بدء الفحص
+======================================================= */
+
+.stButton>button{
+    width:100%;
+    background:linear-gradient(90deg,#0284c7,#0ea5e9);
+    color:white !important;
+    font-size:22px !important;
+    font-weight:700;
+    border:none;
+    border-radius:50px;
+    padding:14px;
+    transition:.3s;
+    box-shadow:0 5px 15px rgba(2,132,199,.35);
+}
+
+.stButton>button:hover{
+    transform:translateY(-2px);
+}
+
+/* =======================================================
+   صندوق رفع الصورة
+======================================================= */
+
+[data-testid="stFileUploader"]{
+    direction:rtl !important;
+}
+
+[data-testid="stFileUploadDropzone"]{
+    border:3px dashed #0ea5e9 !important;
+    border-radius:18px !important;
+    background:#f8fcff !important;
+    padding:40px 20px !important;
+    transition:.3s;
+}
+
+[data-testid="stFileUploadDropzone"]:hover{
+    background:#eef9ff !important;
+    border-color:#0284c7 !important;
+}
+
+[data-testid="stFileUploadDropzone"] div{
+    text-align:center !important;
+}
+
+/* إخفاء النص الإنجليزي */
+
+[data-testid="stFileUploadDropzone"] span,
+[data-testid="stFileUploadDropzone"] small{
+    display:none !important;
+}
+
+/* كتابة رسالة عربية كبيرة وواضحة */
+
+[data-testid="stFileUploadDropzone"]::before{
+
+content:"📷 اضغط هنا لاختيار صورة الشامة أو اسحبها إلى هذه المنطقة";
+
+display:block;
+
+font-size:22px;
+
+font-weight:700;
+
+color:#0284c7;
+
+margin-bottom:10px;
+
+}
+
+/* =======================================================
+   بطاقات الفريق
+======================================================= */
+
+.team-card{
+    background:#f8fafc;
+    padding:20px;
+    border-radius:15px;
+    border-right:4px solid #0284c7;
+}
+
+.team-title{
+    color:#0284c7;
+    font-size:20px;
+    font-weight:700;
+}
+
+.team-names{
+    color:#334155;
+    font-size:18px;
+    line-height:2;
+}
+
+/* =======================================================
+   الرسائل والتنبيهات
+======================================================= */
+
+[data-testid="stAlert"]{
+    font-size:18px !important;
+}
+
+</style>
 """, unsafe_allow_html=True)
 
 # =========================================================
