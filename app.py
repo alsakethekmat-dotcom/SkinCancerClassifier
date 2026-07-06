@@ -13,7 +13,7 @@ st.set_page_config(
     page_title="نظام الفحص الذكي - اكتشف مبكراً",
     page_icon="🔬", 
     layout="wide", 
-    initial_sidebar_state="collapsed" # إخفاء القائمة الجانبية تماماً لمظهر أكثر اتساعاً وعصرية
+    initial_sidebar_state="collapsed" # إخفاء القائمة الجانبية تماماً لمظهر عصري
 )
 
 # إدارة الصفحات والحالة عبر الـ Session State
@@ -34,7 +34,7 @@ def go_home():
     st.session_state.user_image = None
     st.rerun()
 
-# كود CSS الشامل لتنسيق الصفحات وصندوق الرفع والـ Header الثابت
+# كود CSS المطور لحل مشاكل الأبعاد والجمود والضغط تماماً
 st.markdown("""
     <style>
 @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap');
@@ -54,57 +54,76 @@ body {
     background: #f4f7f6 !important;
 }
 
-/* العناوين الأساسية */
+/* العناوين الأساسية المدمجة لعدم إحداث سكرول */
 .title-text {
-    font-size: 3rem;
+    font-size: 2.2rem;
     font-weight: 800;
     background: -webkit-linear-gradient(45deg,#0284c7,#0ea5e9);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-align: center !important;
-    margin-bottom: 8px;
+    margin-bottom: 2px;
 }
 
 .subtitle-text {
     color: #475569;
-    font-size: 1.4rem;
+    font-size: 1.1rem;
     font-weight: 600;
     text-align: center !important;
-    margin-bottom: 35px;
+    margin-bottom: 20px;
 }
 
 /* حجم خطوط النصوص والاستبيان */
 p, label, li, span, .stMarkdown, .stCaption {
-    font-size: 18px !important;
-    line-height: 1.9;
+    font-size: 17px !important;
+    line-height: 1.7;
 }
 
 .stCheckbox {
     background: white;
-    padding: 16px 20px;
-    border-radius: 14px;
+    padding: 12px 18px;
+    border-radius: 12px;
     border: 1px solid #edf2f7;
-    box-shadow: 0 4px 10px rgba(0,0,0,.05);
-    margin-bottom: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,.03);
+    margin-bottom: 8px;
 }
 
-/* الأزرار الكبيرة التفاعلية */
-.stButton>button {
-    width: 100%;
-    background: linear-gradient(90deg,#0284c7,#0ea5e9);
+/* 1. الأزرار الأساسية الكبيرة (تم حصرها في كلاس مخصص لكي لا تخرب بقية الأزرار) */
+.main-btn .stButton>button {
+    width: 100% !important;
+    background: linear-gradient(90deg,#0284c7,#0ea5e9) !important;
     color: white !important;
-    font-size: 22px !important;
-    font-weight: 700;
-    border: none;
-    border-radius: 50px;
-    padding: 14px;
-    transition: .3s;
-    box-shadow: 0 5px 15px rgba(2,132,199,.35);
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    border: none !important;
+    border-radius: 50px !important;
+    padding: 12px !important;
+    transition: .3s !important;
+    box-shadow: 0 5px 15px rgba(2,132,199,.35) !important;
 }
 
-.stButton>button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(2,132,199,.45);
+.main-btn .stButton>button:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 20px rgba(2,132,199,.45) !important;
+}
+
+/* 2. زر العودة للرئيسية (أنيق، صغير، وفي الزاوية المقابلة دون تمطيط) */
+.nav-btn .stButton>button {
+    width: auto !important;
+    background: white !important;
+    color: #0284c7 !important;
+    border: 1px solid #0ea5e9 !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    padding: 6px 16px !important;
+    border-radius: 8px !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05) !important;
+    transition: 0.2s;
+}
+.nav-btn .stButton>button:hover {
+    background: #f0f9ff !important;
+    color: #0284c7 !important;
+    border-color: #0284c7 !important;
 }
 
 /* تنسيق صندوق رفع الملفات الاحترافي والمعرب */
@@ -117,13 +136,8 @@ p, label, li, span, .stMarkdown, .stCaption {
     border: 3px dashed #0ea5e9 !important;
     border-radius: 20px !important;
     background-color: #f0f9ff !important;
-    padding: 40px 20px !important;
-    transition: all 0.3s ease-on-out !important;
-}
-
-.stFileUploader section:hover {
-    background-color: #e0f2fe !important;
-    border-color: #0284c7 !important;
+    padding: 35px 20px !important;
+    transition: all 0.3s ease-in-out !important;
 }
 
 .stFileUploader section text,
@@ -136,18 +150,18 @@ p, label, li, span, .stMarkdown, .stCaption {
 .stFileUploader section::before {
     content: "📷 اسحب صورة الشامة هنا أو اضغط على الزر بالأسفل" !important;
     display: block !important;
-    font-size: 18px !important;
+    font-size: 17px !important;
     font-weight: 700 !important;
     color: #0369a1 !important;
     text-align: center !important;
-    margin-bottom: 20px !important;
+    margin-bottom: 15px !important;
 }
 
 .stFileUploader button {
     background: linear-gradient(90deg, #0ea5e9, #0284c7) !important;
     border: none !important;
     border-radius: 12px !important;
-    padding: 22px 60px !important;
+    padding: 20px 50px !important;
     cursor: pointer !important;
     box-shadow: 0 4px 12px rgba(14, 165, 233, 0.25) !important;
     transition: all 0.3s !important;
@@ -161,7 +175,7 @@ p, label, li, span, .stMarkdown, .stCaption {
 .stFileUploader button::after {
     content: "اختيار صورة من الجهاز 📂" !important;
     color: white !important;
-    font-size: 16px !important;
+    font-size: 15px !important;
     font-weight: 700 !important;
     position: absolute !important;
     left: 50% !important;
@@ -170,36 +184,30 @@ p, label, li, span, .stMarkdown, .stCaption {
     white-space: nowrap !important;
 }
 
-/* بطاقة فريق العمل في الصفحة الرئيسية */
+/* بطاقة فريق العمل المدمجة جداً لمنع السكرول */
 .team-container {
     background: white;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-    border-right: 6px solid #0284c7;
-    margin-top: 25px;
-}
-.team-grid {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-.team-section {
-    flex: 1;
-    min-width: 200px;
+    padding: 15px 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+    border-right: 5px solid #0284c7;
 }
 .team-title {
     color: #0284c7;
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 700;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
+}
+.team-text {
+    font-size: 15px !important;
+    margin-bottom: 4px !important;
+    line-height: 1.5 !important;
 }
 </style>
 """, unsafe_allow_html=True)
 
 # =========================================================
-# 2. تحميل نموذج الذكاء الاصطناعي (يتم مرة واحدة في الخلفية)
+# 2. تحميل نموذج الذكاء الاصطناعي في الخلفية
 # =========================================================
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 model_name = 'best_skin_cancer_model.keras' 
@@ -224,7 +232,6 @@ try:
 except Exception as e:
     model_loaded = False
 
-# دالة فلتر الأنسجة
 def is_valid_skin_image(pil_img):
     opencv_img = np.array(pil_img)
     if len(opencv_img.shape) == 3 and opencv_img.shape[2] == 3:
@@ -240,98 +247,103 @@ def is_valid_skin_image(pil_img):
 
 
 # =========================================================
-# 3. الإطار العلوي الثابت للزاوية اليمنى (Header) - يظهر خارج الرئيسية
+# 3. الإطار العلوي الثابت المتعاكس (Header) - يظهر خارج الرئيسية
 # =========================================================
 if st.session_state.page != 'home':
-    header_left, header_right = st.columns([5, 1])
-    with header_right:
-        # عرض اللوغو في أقصى اليمين وجعل أسفله زر مخفي أو واضح للعودة للرئيسية عند الضغط
-        st.image("logo.jpeg", width=120)
+    # تقسيم متوازن: زر العودة في أقصى اليسار، العنوان في الوسط، واللوغو في أقصى اليمين بدون انضغاط
+    header_btn, header_title, header_logo = st.columns([1.5, 4, 1.5])
+    with header_logo:
+        st.image("logo.jpeg", width=85) # حجم ثابت ومحمي تماماً من الضغط والتشويه
+    with header_title:
+        st.markdown("<h3 style='color:#0284c7; margin-top:18px; text-align:right;'>نظام الفحص الأولي الذكي</h3>", unsafe_allow_html=True)
+    with header_btn:
+        st.markdown('<div class="nav-btn" style="margin-top:18px; text-align:left;">', unsafe_allow_html=True)
         if st.button("🏠 العودة للرئيسية", key="nav_to_home_logo"):
             go_home()
-    with header_left:
-        st.markdown(f"<h3 style='color:#0284c7; margin-top:20px;'>نظام الفحص الأولي الذكي</h3>", unsafe_allow_html=True)
-    st.markdown("<hr style='margin-top:0; margin-bottom:30px;'>", unsafe_allow_html=True)
+        st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown("<hr style='margin-top:5px; margin-bottom:20px;'>", unsafe_allow_html=True)
 
 
 # =========================================================
-# 4. منطق عرض الصفحات (Page Routing)
+# 4. منطق عرض الصفحات المتتابعة
 # =========================================================
 
-# ----------------- [صفحة 1: الصفحة الرئيسية] -----------------
+# ----------------- [صفحة 1: الصفحة الرئيسية المدمجة] -----------------
 if st.session_state.page == 'home':
-    # هيدر الصفحة الرئيسية يتوسطه الشعار والعنوان
-    center_col1, center_col2, center_col3 = st.columns([1, 2, 1])
-    with center_col2:
-        st.image("logo.jpeg", use_container_width=True)
+    # عرض اللوغو في الأعلى بحجم مدمج وأنيق
+    c1, c2, c3 = st.columns([2, 0.8, 2])
+    with c2:
+        st.image("logo.jpeg", width=120)
     
     st.markdown('<div class="title-text">نظام الفحص الأولي لسرطان الجلد</div>', unsafe_allow_html=True)
     st.markdown('<div class="subtitle-text">مشروع ابتكاري: اكتشف مبكراً… لتنقذ حياة 🛡️</div>', unsafe_allow_html=True)
     
-    st.info("💡 عن النظام: نظام تقني ذكي يجمع بين دقة خوارزميات الذكاء الاصطناعي والمؤشرات السريرية المعتمدة عالمياً لدعم الكشف المبكر عن آفات الجلد وشاماته بكل خصوصية وسهولة.")
+    # التوزيع الأفقي الذكي لملء الشاشة ومنع السكرول
+    col_info, col_team = st.columns([1.2, 1], gap="medium")
     
-    # بطاقة فريق العمل والمعلومات الأساسية للمشروع
-    st.markdown("""
-    <div class="team-container">
-        <div class="team-grid">
-            <div class="team-section">
-                <div class="team-title">👩‍💻 الطالبات المبدعات</div>
-                <p>• سما &nbsp;&nbsp; • رنيم &nbsp;&nbsp; • جود &nbsp;&nbsp; • فرح &nbsp;&nbsp; • نورسين</p>
-            </div>
-            <div class="team-section">
-                <div class="team-title">👩‍🏫 إشراف المعلمة</div>
-                <p>أماني أبو رمان</p>
-            </div>
-            <div class="team-section">
-                <div class="team-title">🏫 المدرسة</div>
-                <p>حكمت الساكت الأساسية</p>
-            </div>
+    with col_info:
+        st.markdown("<h4 style='color:#0284c7; margin-top:0;'>🔬 عن النظام</h4>", unsafe_allow_html=True)
+        st.info("نظام تقني ذكي يجمع بين دقة خوارزميات الذكاء الاصطناعي والمؤشرات السريرية المعتمدة عالمياً لدعم الكشف المبكر عن آفات الجلد وشاماته بكل خصوصية وسهولة وبأعلى درجات الأمان الطبي.")
+    
+    with col_team:
+        st.markdown("""
+        <div class="team-container">
+            <div class="team-title">👥 بطاقة تعريفية</div>
+            <p class="team-text"><b>👩‍💻 الطالبات:</b> سما، رنيم، جود， فرح، نورسين</p>
+            <p class="team-text"><b>👩‍🏫 الإشراف:</b> المعلمة أماني أبو رمان</p>
+            <p class="team-text"><b>🏫 المدرسة:</b> حكمت الساكت الأساسية</p>
         </div>
-    </div>
-    <br><br>
-    """, unsafe_allow_html=True)
-    
+        """, unsafe_allow_html=True)
+        
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown('<div class="main-btn">', unsafe_allow_html=True)
     if st.button("🚀 ابـدء الـتـحـقـق والـفـحـص الآن"):
         st.session_state.page = 'survey'
         st.rerun()
+    st.markdown('</div>', unsafe_allow_html=True)
 
 # ----------------- [صفحة 2: استبيان ABCDE السريري] -----------------
 elif st.session_state.page == 'survey':
     st.markdown("## 📋 الخطوة الأولى: التقييم السريري (ABCDE)")
-    st.write("الرجاء الإجابة على الأسئلة التالية بكل دقة بناءً على ملاحظتك البصرية للشامة الحالية:")
+    st.write("الرجاء الإجابة على الأسئلة التالية بناءً على ملاحظتك البصرية للشامة الحالية:")
     
-    st.markdown("<br>", unsafe_allow_html=True)
     a = st.checkbox("A - عدم التماثل: هل شكل الشامة غير متماثل (إذا قسمتها من المنتصف لا يتطابق النصفان)؟")
     b = st.checkbox("B - الحدود: هل أطراف الشامة الخارجية متعرجة، خشنة، أو غير منتظمة؟")
     c = st.checkbox("C - اللون: هل تحتوي الشامة على تدرجات ألوان مختلفة (بني، أسود، أحمر، رمادي)؟")
-    d = st.checkbox("D - القطر: هل يزيد القطر الإجمالي لحجم الشامة عن 6 ملم (أكبر من ممحاة قلم رصاص)؟")
-    e = st.checkbox("E - التطور: هل لاحظت تغيراً مفاجئاً في حجمها، لونها، شكلها، أو بدأت تسبب حكة ونزيف؟")
+    d = st.checkbox("D - القطر: هل يزيد القطر الإجمالي لحجم الشامة عن 6 ملم؟")
+    e = st.checkbox("E - التطور: هل لاحظت تغيراً مفاجئاً في حجمها، أو بدأت تسبب حكة ونزيف؟")
     
-    st.markdown("<br><br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown('<div class="main-btn">', unsafe_allow_html=True)
     if st.button("حفظ الإجابات والانتقال لرفع الصورة ➡️"):
         st.session_state.abcde_score = sum([a, b, c, d, e])
         st.session_state.page = 'upload'
         st.rerun()
+    st.markdown('</div>', unsafe_allow_html=True)
 
 # ----------------- [صفحة 3: رفع الصورة وتحليلها] -----------------
 elif st.session_state.page == 'upload':
     st.markdown("## 📸 الخطوة الثانية: الفحص الرقمي (الذكاء الاصطناعي)")
-    st.write("الرجاء رفع صورة قريبة جداً، واضحة، وفي إضاءة جيدة للشامة المستهدفة:")
+    st.write("الرجاء رفع صورة قريبة جداً وواضحة للشامة المستهدفة:")
     
     if not model_loaded:
-        st.error("🚨 خطأ تقني: لم يتم تحميل ملف ذكاء اصطناعي صالح كـ 'best_skin_cancer_model.keras' في المجلد الرئيسي.")
+        st.error("🚨 خطأ تقني: لم يتم تحميل ملف ذكاء اصطناعي صالح كـ 'best_skin_cancer_model.keras'.")
     
     uploaded_file = st.file_uploader("ارفع الصورة هنا", type=["jpg", "jpeg", "png"])
     
     if uploaded_file is not None:
         st.session_state.user_image = Image.open(uploaded_file)
-        st.image(st.session_state.user_image, caption="الصورة التي تم رفعها بنجاح", width=350)
         
-        st.markdown("<br><br>", unsafe_allow_html=True)
+        # تنسيق عرض الصورة بشكل منظم في المنتصف
+        img_c1, img_c2, img_c3 = st.columns([1, 1, 1])
+        with img_c2:
+            st.image(st.session_state.user_image, caption="الصورة المرفوعة جاهزة للفحص", width=250)
+        
+        st.markdown("<br>", unsafe_allow_html=True)
+        st.markdown('<div class="main-btn">', unsafe_allow_html=True)
         if st.button("🚀 بـدء الـفـحـص الـشـامـل وإظهار التقرير"):
-            # التحقق من فلتر الأنسجة
             if not is_valid_skin_image(st.session_state.user_image):
-                st.error("❌ تم إيقاف الفحص: لم يتعرف النظام على نسيج جلد بشري في الصورة. يرجى التقاط صورة مقربة وواضحة للشامة فقط على البشرة.")
+                st.error("❌ تم إيقاف الفحص: لم يتعرف النظام على نسيج جلد بشري. يرجى إلغاء الصورة والتقاط صورة مقربة للشامة فقط.")
             else:
                 with st.spinner("🤖 جاري معالجة الصورة وتحليلها عبر النموذج الذكي..."):
                     try:
@@ -346,43 +358,43 @@ elif st.session_state.page == 'upload':
                         st.rerun()
                     except Exception as e:
                         st.error(f"حدث خطأ برمي أثناء التحليل الفني: {e}")
+        st.markdown('</div>', unsafe_allow_html=True)
 
 # ----------------- [صفحة 4: التقرير الطبي والنتيجة النهائية] -----------------
 elif st.session_state.page == 'result':
     st.markdown("## 📊 التقرير الطبي المشترك والنتيجة النهائية")
-    st.write("تم دمج نتائج التقييم السريري (ABCDE) مع الفحص الرقمي العميق للنموذج:")
     
     abcde_score = st.session_state.abcde_score
     melanoma_probability = st.session_state.prediction * 100
     benign_probability = 100 - melanoma_probability
     
-    st.markdown("<br>", unsafe_allow_html=True)
-    
     # خوارزمية تحديد النتيجة الطبية المشتركة
     if melanoma_probability >= 70 or (melanoma_probability >= 40 and abcde_score >= 3):
         st.error(f"⚠️ مستوى الخطورة المحتملة: مرتفع")
         st.write(f"**نسبة الاشتباه المبني على الذكاء الاصطناعي:** {melanoma_probability:.1f}%")
-        st.write(f"**علامات الخطر السريرية المرصودة من قبلك:** {abcde_score} من أصل 5 علامات.")
-        st.info("💡 التوجيه الطبي: يُنصح بشدة وبشكل عاجل بحجز موعد لدى طبيب استشاري أمراض جلدية لإجراء فحص مجهري (Dermoscopy) أو أخذ خزعة تأكيدية.")
+        st.write(f"**علامات الخطر السريرية المرصودة:** {abcde_score} من أصل 5 علامات.")
+        st.info("💡 التوجيه الطبي: يُنصح بشدة وبشكل عاجل بحجز موعد لدى طبيب استشاري أمراض جلدية لإجراء فحص مجهري دقيق.")
         
     elif 30 <= melanoma_probability < 70 or (melanoma_probability < 40 and abcde_score >= 2):
         st.warning(f"🟡 مستوى الخطورة المحتملة: متوسط (بحاجة لمتابعة)")
         st.write(f"**نسبة الاشتباه المبني على الذكاء الاصطناعي:** {melanoma_probability:.1f}%")
-        st.write(f"**علامات الخطر السريرية المرصودة من قبلك:** {abcde_score} من أصل 5 علامات.")
-        st.info("💡 التوجيه الطبي: يفضل مراقبة الشامة بانتظام (مرة كل شهر) وملاحظة أي تطور في الحجم أو اللون، واستشارة الطبيب في حال استمرار التغير.")
+        st.write(f"**علامات الخطر السريرية المرصودة:** {abcde_score} من أصل 5 علامات.")
+        st.info("💡 التوجيه الطبي: يفضل مراقبة الشامة بانتظام (مرة كل شهر) وملاحظة أي تطور، واستشارة الطبيب في حال استمرار التغير.")
         
     else:
         st.success(f"✅ مستوى الخطورة المحتملة: منخفض (مؤشرات مطمئنة جداً)")
         st.write(f"**نسبة سلامة الأنسجة (حميدة):** {benign_probability:.1f}%")
         st.write(f"**علامات الخطر السريرية المرصودة:** {abcde_score} من أصل 5.")
-        st.info("💡 التوجيه الطبي: المؤشرات تبدو طبيعية ومطمئنة ولا تدعو للقلق البتة. حافظ على حماية جلدك من أشعة الشمس المباشرة وافحص نفسك دورياً.")
+        st.info("💡 التوجيه الطبي: المؤشرات تبدو طبيعية ومطمئنة ولا تدعو للقلق. حافظ على فحص نفسك دورياً.")
         
-    st.markdown("<br><br><hr>", unsafe_allow_html=True)
+    st.markdown("<br><hr>", unsafe_allow_html=True)
+    st.markdown('<div class="main-btn">', unsafe_allow_html=True)
     if st.button("🔄 إجراء فحص جديد لمريض آخر"):
         go_home()
+    st.markdown('</div>', unsafe_allow_html=True)
 
 # =========================================================
 # 5. تذييل الصفحة الثابت (Footer)
 # =========================================================
-st.markdown("<br><br><br><br>", unsafe_allow_html=True)
+st.markdown("<br><br>", unsafe_allow_html=True)
 st.caption("🚨 إخلاء مسؤولية قانوني وطبي: هذا التطبيق هو مخرج لمشروع ابتكاري مدرسي، مخصص ومطور لغايات التوعية المجتمعية والتعليمية والفحص الذاتي الأولي فقط، ولا يمثل بأي حال من الأحوال تشخيصاً طبياً نهائياً يعوضك عن زيارة الطبيب المختص.")
