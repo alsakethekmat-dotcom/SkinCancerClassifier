@@ -246,7 +246,7 @@ with st.sidebar:
         <div class="team-names">أماني أبو رمان</div>
         <hr style="margin: 10px 0;">
         <div class="team-title">🏫 المدرسة</div>
-        <div class="team-names">مدرسة حكمت الساكت الأساسية </div>
+        <div class="team-names"> حكمت الساكت الأساسية </div>
     </div>
     """, unsafe_allow_html=True)
 
