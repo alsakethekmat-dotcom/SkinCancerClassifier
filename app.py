@@ -35,7 +35,7 @@ def go_home():
     st.session_state.user_image = None
     st.rerun()
 
-# كود الـ CSS المطور بالكامل لتغيير تجربة المستخدم البصرية والخطوط والألوان
+# كود الـ CSS المطور والمصلح بالكامل لحل مشكلة صندوق الرفع نهائياً
 st.markdown("""
     <style>
 @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700;800&display=swap');
@@ -62,10 +62,10 @@ body {
     max-width: 1250px !important;
 }
 
-/* تكبير وتغميق خطوط المحتوى العام لمنع البهتان تماماً */
+/* تكبير وتغميق خطوط المحتوى العام */
 p, li, span, .stMarkdown {
-    font-size: 21px !important; /* تكبير الخط العام */
-    color: #0f172a !important; /* أسود داكن عميق */
+    font-size: 21px !important;
+    color: #0f172a !important;
     line-height: 1.8 !important;
     font-weight: 500 !important;
 }
@@ -82,7 +82,7 @@ p, li, span, .stMarkdown {
 }
 
 .brand-logo-img {
-    width: 160px !important; /* حجم الشعار المكبّر والواضح */
+    width: 160px !important;
     height: auto !important;
     border-radius: 18px !important;
     box-shadow: 0 8px 20px rgba(15, 118, 110, 0.1) !important;
@@ -95,9 +95,9 @@ p, li, span, .stMarkdown {
 }
 
 .main-title {
-    font-size: 3.0rem !important; /* تكبير حجم عنوان المشروع الإستراتيجي */
+    font-size: 3.0rem !important;
     font-weight: 800 !important;
-    color: #0f766e !important; /* تركواز طبي متسق مع الشعار */
+    color: #0f766e !important;
     margin: 0 !important;
     padding: 0 !important;
     line-height: 1.2 !important;
@@ -105,7 +105,7 @@ p, li, span, .stMarkdown {
 
 .main-subtitle {
     color: #334155 !important;
-    font-size: 1.4rem !important; /* تكبير حجم العبارة التوضيحية */
+    font-size: 1.4rem !important;
     font-weight: 700 !important;
     margin-top: 12px !important;
     margin-bottom: 0 !important;
@@ -123,14 +123,14 @@ p, li, span, .stMarkdown {
 .team-card { border-right: 6px solid #0284c7 !important; }
 
 .card-title {
-    font-size: 24px !important; /* خط أكبر لعناوين البطاقات */
+    font-size: 24px !important;
     font-weight: 800 !important;
     color: #0f172a !important;
     margin-bottom: 15px !important;
 }
 
 .card-body-text {
-    font-size: 19px !important; /* خط أكبر لتفاصيل البطاقات */
+    font-size: 19px !important;
     color: #334155 !important;
     line-height: 1.8 !important;
 }
@@ -150,9 +150,9 @@ p, li, span, .stMarkdown {
    🎯 هندسة الأزرار الثورية والملونة المتناسقة تفاعلياً
    ===================================================== */
 
-/* زر البداية: كبسولة ياقوتية خارقة الجمال وممركزة بالمنتصف تفصل التطبيق عن الملل */
+/* زر البداية الياقوتي الممركز بالمنتصف التام */
 div[data-testid="element-container"]:has(.hero-btn-marker) + div[data-testid="element-container"] div[data-testid="stButton"] button {
-    background: linear-gradient(135deg, #e11d48 0%, #f43f5e 100%) !important; /* لون ياقوتي / قرمزي حيوي وبارز جداً */
+    background: linear-gradient(135deg, #e11d48 0%, #f43f5e 100%) !important;
     color: white !important;
     font-size: 25px !important;
     font-weight: 800 !important;
@@ -195,33 +195,48 @@ div[data-testid="element-container"]:has(.nav-btn-marker) + div[data-testid="ele
     border-radius: 8px !important;
 }
 
-/* تخصيص صندوق المرفقات ورفع الملفات ليتسق مع الهوية الفاخرة */
-.stFileUploader section {
-    border: 3px dashed #0f766e !important;
+/* =====================================================
+   💎 الحل الجذري لإصلاح صندوق المرفقات (image_f9bbeb.png)
+   ===================================================== */
+[data-testid="stFileUploaderDropzone"] {
+    border: 2px dashed #0f766e !important;
     border-radius: 20px !important;
     background-color: #f0fdfa !important;
-    padding: 35px 20px !important;
+    padding: 40px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 15px !important;
 }
-.stFileUploader section::before {
-    content: "📷 اسحب صورة الشامة هنا أو اضغط على الزر بالأسفل" !important;
-    display: block !important;
-    font-size: 19px !important;
-    font-weight: 700 !important;
-    color: #0f766e !important;
+
+/* تحسين مظهر نصوص التعليمات والقيود الافتراضية لمنع تداخلها */
+[data-testid="stFileUploaderDropzone"] div [data-testid="stMarkdownContainer"] p,
+[data-testid="stFileUploaderDropzone"] span {
+    color: #475569 !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
     text-align: center !important;
-    margin-bottom: 15px !important;
 }
-.stFileUploader button {
-    background: linear-gradient(90deg, #0f766e, #0284c7) !important;
-    border: none !important; border-radius: 12px !important;
-    padding: 20px 50px !important; color: transparent !important;
-    margin: 0 auto !important; display: block !important;
+
+/* إعادة هيكلة وتصميم زر رفع الملفات الأصلي بشكل مبهر وبدون أي تداخل نصي */
+[data-testid="stFileUploaderDropzone"] button {
+    background: linear-gradient(135deg, #0f766e 0%, #0284c7 100%) !important;
+    color: white !important;
+    border: none !important;
+    padding: 12px 40px !important;
+    border-radius: 50px !important;
+    font-size: 17px !important;
+    font-weight: 700 !important;
+    box-shadow: 0 6px 18px rgba(15, 118, 110, 0.2) !important;
+    transition: all 0.2s ease !important;
+    margin: 10px auto 0 auto !important;
+    display: inline-block !important;
 }
-.stFileUploader button::after {
-    content: "اختيار صورة من الجهاز 📂" !important;
-    color: white !important; font-size: 16px !important;
-    font-weight: 700 !important; position: absolute !important;
-    left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important;
+
+[data-testid="stFileUploaderDropzone"] button:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 10px 22px rgba(15, 118, 110, 0.35) !important;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -265,7 +280,6 @@ def is_valid_skin_image(pil_img):
         return (np.sum(combined_mask > 0) / combined_mask.size) * 100 > 25.0
     return False
 
-# دالة ذكية لتحويل اللوغو المحلي إلى بايتات لقراءته بشكل مرن داخل كود التمركز المستحدث
 def get_base64_encoded_image(image_path):
     try:
         with open(image_path, "rb") as img_file:
@@ -299,7 +313,6 @@ if st.session_state.page != 'home':
 # ----------------- [صفحة 1: الصفحة الرئيسية المحدثة كلياً] -----------------
 if st.session_state.page == 'home':
     
-    # استدعاء دالة التحويل وتطبيق التمركز المطلق المتجاور رغماً عن قيود المتصفح الهيكلية
     logo_b64 = get_base64_encoded_image(os.path.join(BASE_DIR, "logo.jpeg"))
     
     if logo_b64:
@@ -317,7 +330,6 @@ if st.session_state.page == 'home':
     
     st.markdown("<br>", unsafe_allow_html=True)
     
-    # بطاقات العرض الشبكية المحسنة وذات نصوص كبيرة وواضحة جداً
     col_info, col_team = st.columns([1.1, 0.9])
     
     with col_info:
@@ -346,7 +358,6 @@ if st.session_state.page == 'home':
         
     st.markdown("<br>", unsafe_allow_html=True)
     
-    # توسيط كبسولة البداية بالمنتصف التام باللون الياقوتي الجديد الفخم البارز
     _, btn_center_col, _ = st.columns([1, 1.6, 1])
     with btn_center_col:
         st.markdown('<div class="hero-btn-marker"></div>', unsafe_allow_html=True)
@@ -361,7 +372,7 @@ elif st.session_state.page == 'survey':
     st.markdown("<br>", unsafe_allow_html=True)
     
     a = st.checkbox("A - عدم التماثل: هل شكل الشامة غير متماثل (إذا قسمتها من المنتصف لا يتطابق النصفان)؟")
-    b = st.checkbox("B - الحدود: هل أطراف الشامة الخارجية متعرجة، خشنة، أو غير منتظمة؟")
+    b = st.checkbox("B - الحدود: هل أطراف الشامة الخارجية متعرجة, خشنة، أو غير منتظمة؟")
     c = st.checkbox("C - اللون: هل تحتوي الشامة على تدرجات ألوان مختلفة (بني، أسود، أحمر، رمادي)؟")
     d = st.checkbox("D - القطر: هل يزيد القطر الإجمالي لحجم الشامة عن 6 ملم؟")
     e = st.checkbox("E - التطور: هل لاحظت تغيراً مفاجئاً في حجمها، أو بدأت تسبب حكة ونزيف؟")
@@ -373,7 +384,7 @@ elif st.session_state.page == 'survey':
         st.session_state.page = 'upload'
         st.rerun()
 
-# ----------------- [صفحة 3: رفع الصورة وتحليلها] -----------------
+# ----------------- [صفحة 3: رفع الصورة وتحليلها المصلحة جذرياً] -----------------
 elif st.session_state.page == 'upload':
     st.markdown("<h2 style='color:#0f766e; font-weight:800;'>📸 الخطوة الثانية: الفحص الرقمي (الذكاء الاصطناعي)</h2>", unsafe_allow_html=True)
     st.markdown("<p style='font-size:20px; color:#475569;'>الرجاء رفع صورة قريبة جداً وواضحة للشامة المستهدفة:</p>", unsafe_allow_html=True)
@@ -381,6 +392,7 @@ elif st.session_state.page == 'upload':
     if not model_loaded:
         st.error("🚨 خطأ تقني: لم يتم تحميل ملف ذكاء اصطناعي صالح كـ 'best_skin_cancer_model.keras'.")
     
+    # الصندوق الآن نظيف وخالي من أي تشوهات نصية متداخلة
     uploaded_file = st.file_uploader("ارفع الصورة هنا", type=["jpg", "jpeg", "png"])
     
     if uploaded_file is not None:
