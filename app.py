@@ -35,10 +35,10 @@ def go_home():
     st.session_state.user_image = None
     st.rerun()
 
-# كود الـ CSS الحاسم والمطور لإنهاء مشكلة تداخل أزرار الرفع للأبد
+# كود الـ CSS الشامل مدمجاً معه صندوق الرفع الاحترافي الخاص بك
 st.markdown("""
     <style>
-@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght=500;700;800&display=swap');
 
 /* ضبط الخطوط والاتجاهات الشاملة للمنصة */
 * {
@@ -147,7 +147,7 @@ p, li, span, .stMarkdown {
 }
 
 /* =====================================================
-   🎯 هندسة الأزرار الثورية والملونة المتناسقة تفاعلياً
+   🎯 هندسة الأزرار العادية والتنقل تفاعلياً
    ===================================================== */
 
 /* زر البداية الياقوتي الممركز بالمنتصف التام */
@@ -196,55 +196,55 @@ div[data-testid="element-container"]:has(.nav-btn-marker) + div[data-testid="ele
 }
 
 /* =====================================================
-   💎 التحديث الحاسم لإصلاح التشوه البصري في (image_f9c009.png)
+   🛠️ تطبيق كود صندوق رفع الملفات الاحترافي المعتمد من قبلك
    ===================================================== */
-[data-testid="stFileUploaderDropzone"] {
-    border: 2px dashed #0f766e !important;
-    border-radius: 24px !important;
-    background-color: #f0fdfa !important;
-    padding: 50px 30px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 20px !important;
+.stFileUploader section {
+    border: 3px dashed #0ea5e9 !important;
+    border-radius: 20px !important;
+    background-color: #f0f9ff !important;
+    padding: 35px 20px !important;
 }
 
-/* تنظيف وتنسيق الزر بشكل نقي ومنع تضاعف أو تداخل الحروف */
-[data-testid="stFileUploaderDropzone"] button {
-    background: linear-gradient(135deg, #0f766e 0%, #0284c7 100%) !important;
-    border: none !important;
-    padding: 14px 45px !important;
-    border-radius: 50px !important;
-    box-shadow: 0 8px 22px rgba(15, 118, 110, 0.22) !important;
-    transition: all 0.3s ease !important;
-    margin: 5px auto !important;
-    display: inline-block !important;
+.stFileUploader section text,
+.stFileUploader section span,
+.stFileUploader section small,
+.stFileUploader section div div {
+    display: none !important;
 }
 
-/* فرض اللون الأبيض المطلق على النص وعلى كل الطبقات الداخلية للزر لمنع تداخل أي نصوص داكنة */
-[data-testid="stFileUploaderDropzone"] button,
-[data-testid="stFileUploaderDropzone"] button * {
-    color: #ffffff !important;
+.stFileUploader section::before {
+    content: "📷 اسحب صورة الشامة هنا أو اضغط على الزر بالأسفل" !important;
+    display: block !important;
     font-size: 18px !important;
     font-weight: 700 !important;
-    text-shadow: none !important;
-}
-
-[data-testid="stFileUploaderDropzone"] button:hover {
-    transform: translateY(-2px) !important;
-    box-shadow: 0 12px 26px rgba(15, 118, 110, 0.4) !important;
-}
-
-/* تنسيق النصوص الفرعية والمساعدة وتوفير مسافة كافية تمنع التكدس */
-[data-testid="stFileUploaderDropzone"] span,
-[data-testid="stFileUploaderDropzone"] p,
-[data-testid="stUploadDropzoneInstructions"] {
-    color: #475569 !important;
-    font-size: 16px !important;
-    font-weight: 600 !important;
+    color: #0369a1 !important;
     text-align: center !important;
-    margin-top: 8px !important;
+    margin-bottom: 15px !important;
+}
+
+.stFileUploader button {
+    background: linear-gradient(90deg, #0ea5e9, #0284c7) !important;
+    border: none !important;
+    border-radius: 12px !important;
+    padding: 20px 50px !important;
+    cursor: pointer !important;
+    color: transparent !important;
+    font-size: 0px !important;
+    margin: 0 auto !important;
+    display: block !important;
+    position: relative !important; /* مضاف لضمان ارتكاز النص الداخلي بدقة وثبات */
+}
+
+.stFileUploader button::after {
+    content: "اختيار صورة من الجهاز 📂" !important;
+    color: white !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    white-space: nowrap !important; /* مضاف لضمان عدم انكسار جملة الزر */
 }
 </style>
 """, unsafe_allow_html=True)
@@ -382,7 +382,7 @@ elif st.session_state.page == 'survey':
     a = st.checkbox("A - عدم التماثل: هل شكل الشامة غير متماثل (إذا قسمتها من المنتصف لا يتطابق النصفان)؟")
     b = st.checkbox("B - الحدود: هل أطراف الشامة الخارجية متعرجة، خشنة، أو غير منتظمة؟")
     c = st.checkbox("C - اللون: هل تحتوي الشامة على تدرجات ألوان مختلفة (بني، أسود، أحمر، رمادي)؟")
-    d = st.checkbox("D - القطر: هل يزيد القطر الإجمالي لحجم الشامة عن 6 ملم Bars؟")
+    d = st.checkbox("D - القطر: هل يزيد القطر الإجمالي لحجم الشامة عن 6 ملم؟")
     e = st.checkbox("E - التطور: هل لاحظت تغيراً مفاجئاً في حجمها، أو بدأت تسبب حكة ونزيف؟")
     
     st.markdown("<br>", unsafe_allow_html=True)
@@ -392,7 +392,7 @@ elif st.session_state.page == 'survey':
         st.session_state.page = 'upload'
         st.rerun()
 
-# ----------------- [صفحة 3: رفع الصورة وتحليلها - نسخة مصلحة كلياً] -----------------
+# ----------------- [صفحة 3: رفع الصورة وتحليلها بالستايل الجديد الاحترافي] -----------------
 elif st.session_state.page == 'upload':
     st.markdown("<h2 style='color:#0f766e; font-weight:800;'>📸 الخطوة الثانية: الفحص الرقمي (الذكاء الاصطناعي)</h2>", unsafe_allow_html=True)
     st.markdown("<p style='font-size:20px; color:#475569;'>الرجاء رفع صورة قريبة جداً وواضحة للشامة المستهدفة:</p>", unsafe_allow_html=True)
