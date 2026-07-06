@@ -118,7 +118,7 @@ h1,h2,h3{
 }
 
 /* =======================================================
-   صندوق رفع الصورة (إصلاح كلمة الزر الافتراضية فقط)
+   صندوق رفع الصورة
 ======================================================= */
 
 [data-testid="stFileUploader"] {
@@ -138,19 +138,34 @@ h1,h2,h3{
     border-color: #0284c7 !important;
 }
 
-/* 🛠️ حيلة الـ CSS السحرية لإخفاء الكلمة المشوهة داخل الزر */
+/* ==========================================
+   إصلاح نص زر رفع الملف
+========================================== */
+
 [data-testid="stFileUploadDropzone"] button {
-    font-size: 0 !important; /* إخفاء النص القديم المتشوه (Uploadpload) بالكامل */
+    position: relative !important;
+    color: transparent !important;      /* إخفاء النص الأصلي */
+    text-shadow: none !important;
 }
 
-/* ✍️ طباعة الكلمة الصحيحة والنظيفة داخل الزر */
+/* إخفاء أي span داخل الزر */
+[data-testid="stFileUploadDropzone"] button span {
+    visibility: hidden !important;
+}
+
+/* إظهار النص الجديد */
 [data-testid="stFileUploadDropzone"] button::after {
-    content: "Browse"; /* يمكنك تغييرها إلى "Upload" إذا كنت تفضلها */
-    font-size: 14px !important; /* إعادة حجم الخط الطبيعي للكلمة الجديدة */
+    content: "Browse";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #111827 !important;
+    font-size: 14px !important;
     font-family: Arial, sans-serif !important;
-    display: inline-block;
+    font-weight: 600 !important;
+    white-space: nowrap;
 }
-
 /* =======================================================
    صندوق رفع الصورة
 ======================================================= */
