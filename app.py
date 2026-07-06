@@ -16,7 +16,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# كود CSS المطور بالكامل لتغيير شكل صندوق الرفع وجعله تفاعلياً وعربياً 100%
+# كود CSS المطور كلياً بالاعتماد على كلاسات Streamlit الأساسية لضمان التغير والتعريب
 st.markdown("""
     <style>
 @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap');
@@ -116,77 +116,78 @@ h1, h2, h3 {
 }
 
 /* =======================================================
-   6. التنسيق الثوري والجديد لصندوق رفع الصورة (مكسور الجمود)
+   6. التنسيق الجديد كلياً لصندوق رفع الملفات (حل مشكلة الجمود)
 ======================================================= */
-[data-testid="stFileUploader"] {
+
+/* إجبار حاوية الرفع بالكامل على التموضع الصحيح */
+.stFileUploader {
     direction: rtl !important;
+    text-align: right !important;
 }
 
-/* إعادة تصميم الحاوية الكبيرة بالكامل */
-[data-testid="stFileUploadDropzone"] {
+/* إعادة تصميم منطقة السحب والإفلات وإعطائها لوناً مميزاً */
+.stFileUploader section {
     border: 3px dashed #0ea5e9 !important;
     border-radius: 20px !important;
-    background: #f0f9ff !important; /* خلفية زرقاء ناعمة مريحة */
-    padding: 45px 20px !important;
-    transition: all 0.3s ease-in-out;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 15px !important;
+    background-color: #f0f9ff !important;
+    padding: 40px 20px !important;
+    transition: all 0.3s ease-on-out !important;
 }
 
-[data-testid="stFileUploadDropzone"]:hover {
-    background: #e0f2fe !important; /* تفتيح الخلفية عند اللمس */
+.stFileUploader section:hover {
+    background-color: #e0f2fe !important;
     border-color: #0284c7 !important;
-    transform: translateY(-2px);
 }
 
-/* إخفاء كل الهياكل والنصوص الإنجليزية المتداخلة نهائياً */
-[data-testid="stFileUploadDropzone"] section,
-[data-testid="stFileUploadDropzone"] div span,
-[data-testid="stFileUploadDropzone"] div small {
+/* إخفاء كافة النصوص والتقييدات الإنجليزية القديمة التي تسبب التداخل */
+.stFileUploader section text,
+.stFileUploader section span,
+.stFileUploader section small,
+.stFileUploader section div div {
     display: none !important;
 }
 
-/* حقن النص التوجيهي العربي بخط عريض وجميل */
-[data-testid="stFileUploadDropzone"]::before {
-    content: "📷 اسحب صورة الشامة هنا أو اضغط على الزر بالأسفل";
+/* طباعة النص الإرشادي العربي العريض داخل الصندوق */
+.stFileUploader section::before {
+    content: "📷 اسحب صورة الشامة هنا أو اضغط على الزر بالأسفل" !important;
     display: block !important;
-    font-size: 19px !important;
+    font-size: 18px !important;
     font-weight: 700 !important;
     color: #0369a1 !important;
     text-align: center !important;
-    margin-bottom: 5px;
+    margin-bottom: 20px !important;
 }
 
-/* تحويل الزر الداخلي "الجامد" إلى زر عصري وملون وملفت للنظر */
-[data-testid="stFileUploadDropzone"] button {
-    font-size: 0px !important; /* تصفير الكلمة المشوهة بالكامل */
-    background: linear-gradient(90deg, #0ea5e9, #0284c7) !important; /* تلوين الزر */
-    color: transparent !important;
+/* تنسيق زر التحميل الداخلي بالكامل (تحويله لزر ملون وعصري مثل زر الفحص) */
+.stFileUploader button {
+    background: linear-gradient(90deg, #0ea5e9, #0284c7) !important;
     border: none !important;
     border-radius: 12px !important;
-    padding: 25px 80px !important; /* تكبير حجم الزر */
+    padding: 22px 60px !important; /* تكبير حجم الزر */
     cursor: pointer !important;
     box-shadow: 0 4px 12px rgba(14, 165, 233, 0.25) !important;
     transition: all 0.3s !important;
     position: relative !important;
-    display: inline-block !important;
+    display: block !important;
+    margin: 0 auto !important; /* توسيط الزر داخل الصندوق */
+    color: transparent !important; /* إخفاء النص القديم المشوه تماماً */
+    font-size: 0px !important;
+    line-height: 0 !important;
 }
 
-[data-testid="stFileUploadDropzone"] button:hover {
+.stFileUploader button:hover {
     background: linear-gradient(90deg, #0284c7, #0369a1) !important;
     box-shadow: 0 6px 15px rgba(2, 132, 199, 0.4) !important;
     transform: scale(1.03);
 }
 
-/* كتابة النص العربي المختار والنظيف فوق الزر الجديد */
-[data-testid="stFileUploadDropzone"] button::after {
-    content: "اختيار صورة من الجهاز 📂";
-    color: white !important; /* خط أبيض واضح */
+/* طباعة النص العربي الصحيح والنظيف بنسبة 100% فوق الزر الجديد */
+.stFileUploader button::after {
+    content: "اختيار صورة من الجهاز 📂" !important;
+    color: white !important; /* اللون الأبيض الواضح للخط */
     font-size: 16px !important;
     font-weight: 700 !important;
+    font-family: 'Tajawal', sans-serif !important;
     position: absolute !important;
     left: 50% !important;
     top: 50% !important;
@@ -317,7 +318,7 @@ with col1:
     
     if st.checkbox("A - عدم التماثل: هل شكل الشامة غير متماثل من المنتصف؟"): abcde_score += 1
     if st.checkbox("B - الحدود: هل أطراف الشامة خارجية متعرجة أو غير منتظمة؟"): abcde_score += 1
-    if st.checkbox("C - اللون: هل تحتوي الشامة على تدرجات ألوان (بني، أسود، أحمر)؟"): abcde_score += 1
+    if st.checkbox("C - اللون: هل تحتوي الشامة على تدرجات ألوان (بني، أسود، أحمر) Sunset؟"): abcde_score += 1
     if st.checkbox("D - القطر: هل يزيد القطر الإجمالي لحجم الشامة عن 6 ملم؟"): abcde_score += 1
     if st.checkbox("E - التطور: هل لاحظت تغيراً مفاجئاً في حجمها أو بدأت تنزف؟"): abcde_score += 1
 
