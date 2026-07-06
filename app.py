@@ -5,15 +5,14 @@ import numpy as np
 from PIL import Image
 import cv2
 import os
-import urllib.request
 
 # =========================================================
 # 1. إعدادات الصفحة والتصميم البصري العصري (Modern UI)
 # =========================================================
 st.set_page_config(
-    page_title="نظام الفحص الذكي - اكتشف مبكراً", 
-    page_icon="🩺", 
-    layout="wide", # استخدام الشاشة العريضة لتصميم عصري
+    page_title="نظام الفحص الذكي - اكتشف مبكراً",
+    page_icon="🔬", 
+    layout="wide", 
     initial_sidebar_state="expanded"
 )
 
@@ -104,6 +103,22 @@ st.markdown("""
     }
     .team-title { color: #0284c7; font-weight: 700; margin-bottom: 10px; font-size: 1.1rem; }
     .team-names { color: #334155; font-size: 1rem; line-height: 1.8; font-weight: 500;}
+
+    /* حل مشكلة كلمة Upload الإنجليزية */
+    [data-testid="stFileUploadDropzone"] div div::before {
+        content: "اسحب وأفلت الصورة هنا أو اضغط للاستعراض";
+        display: block;
+        font-family: 'Tajawal', sans-serif;
+        color: #475569;
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+    [data-testid="stFileUploadDropzone"] div div span {
+        display: none !important; 
+    }
+    [data-testid="stFileUploadDropzone"] div div small {
+        display: none !important; 
+    }
     </style>
 """, unsafe_allow_html=True)
 
@@ -111,7 +126,7 @@ st.markdown("""
 # 2. القائمة الجانبية (فريق العمل والمدرسة)
 # =========================================================
 with st.sidebar:
-    st.image("https://cdn-icons-png.flaticon.com/512/3063/3063123.png", width=100) # أيقونة طبية بسيطة
+    st.image("https://cdn-icons-png.flaticon.com/512/3063/3063123.png", width=100) 
     st.markdown("### عن المشروع")
     st.info("نظام تقني يجمع بين دقة الذكاء الاصطناعي والمؤشرات السريرية لدعم التوعية الصحية بمخاطر سرطان الجلد.")
     
@@ -120,10 +135,10 @@ with st.sidebar:
         <div class="team-title">🏫 المدرسة</div>
         <div class="team-names">مدرسة حكمت الساكت الأساسية للبنات</div>
         <hr style="margin: 10px 0;">
-        <div class="team-title">👩‍🏫 إشراف المعلمة</div>
+        <div class="team-title">👩‍🏫إشراف المعلمة</div>
         <div class="team-names">أماني أبو رمان</div>
         <hr style="margin: 10px 0;">
-        <div class="team-title">👩‍💻 تطوير الطالبات</div>
+        <div class="team-title">👩‍💻تطوير الطالبات</div>
         <div class="team-names">
             • سما <br>
             • رنيم <br>
@@ -140,31 +155,13 @@ with st.sidebar:
 st.markdown('<div class="title-text">نظام الفحص الأولي الذكي لسرطان الجلد</div>', unsafe_allow_html=True)
 st.markdown('<div class="subtitle-text">مشروع: اكتشف مبكراً… لتنقذ حياة 🛡️</div>', unsafe_allow_html=True)
 
-# 1. تحديد المسار المطلق والملف
+# 1. تحديد المسار المطلق والملف (قراءة مباشرة من نفس المجلد)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-# يمكنكِ تغيير الامتداد هنا إلى .h5 أو إبقائه .keras حسب اسم ملفك الحالي
 model_name = 'best_skin_cancer_model.keras' 
 model_path = os.path.join(BASE_DIR, model_name)
 
-# =========================================================
-# ⚠️ ضعي هنا رابط التحميل المباشر للموديل الخاص بكم
-# =========================================================
-# إذا كان دروب بوكس: تأكدي أن الرابط ينتهي بـ dl=1 بدلاً من dl=0
-# إذا كان قوقل درايف: استخدمي صيغة الرابط المباشر: https://docs.google.com/uc?export=download&id=اكتبِ_هنا_معرف_الملف
-MODEL_URL = "ضعِ_رابط_التحميل_المباشر_هنا"
-
 @st.cache_resource
 def load_students_model():
-    # إذا كان الملف غير موجود أو حجمه تالف (أصغر من 5 ميجا بسبب مشكلة جيت هب)
-    if not os.path.exists(model_path) or os.path.getsize(model_path) < 5 * 1024 * 1024:
-        if MODEL_URL != "ضعِ_رابط_التحميل_المباشر_هنا":
-            with st.spinner("📥 جاري سحب ملف النموذج الأصلي من السحابة لضمان سلامته... يرجى الانتظار ثوانٍ..."):
-                try:
-                    urllib.request.urlretrieve(MODEL_URL, model_path)
-                except Exception as download_error:
-                    st.error(f"❌ فشل تحميل الملف من السحابة: {download_error}")
-                    return None
-
     # الترقيع البرمجي الذكي لتفادي مشاكل المسميات بين إصدارات كيرس المختلفة
     try:
         original_input_layer_init = tf.keras.layers.InputLayer.__init__
@@ -176,19 +173,23 @@ def load_students_model():
     except Exception:
         pass
 
+    # قراءة النموذج مباشرة من الملف
     return tf.keras.models.load_model(model_path, compile=False)
 
 # كود تشخيصي يظهر للطالبات في القائمة الجانبية لمعرفة الحجم الحقيقي للملف على السيرفر
 if os.path.exists(model_path):
     actual_size = os.path.getsize(model_path) / (1024 * 1024)
-    st.sidebar.info(f"📦 حجم ملف النموذج الحالي على السيرفر: {actual_size:.2f} MB")
+    st.sidebar.success(f"📦 النموذج جاهز ومقروء بنجاح ({actual_size:.2f} MB)")
+else:
+    st.sidebar.error("❌ ملف النموذج غير موجود في المجلد!")
 
 try:
     model = load_students_model()
     model_loaded = True if model is not None else False
 except Exception as e:
-    st.error(f"🚨 تنبيه: لم يتم تحميل ملف النموذج. تفاصيل الخطأ التقني: {e}")
+    st.error(f"🚨تنبيه: لم يتم تحميل ملف النموذج. تفاصيل الخطأ التقني: {e}")
     model_loaded = False
+
 # =========================================================
 # 4. الفلتر الذكي الصارم لفحص أنسجة الجلد (HSV المطور)
 # =========================================================
@@ -275,7 +276,7 @@ if uploaded_file is not None and model_loaded:
                     st.error(f"⚠️ مستوى الخطورة المحتملة: مرتفع")
                     st.write(f"**نسبة الاشتباه (بالذكاء الاصطناعي):** {melanoma_probability:.1f}%")
                     st.write(f"**علامات الخطر السريرية التي لاحظتها:** {abcde_score} من 5")
-                    st.info("💡 التوجيه: يُنصح بشدة بحجز موعد لدى طبيب الجلدية المختص لإجراء فحص سريري دقيق.")
+                    st.info("💡التوجيه: يُنصح بشدة بحجز موعد لدى طبيب الجلدية المختص لإجراء فحص سريري دقيق.")
                     
                 elif 30 <= melanoma_probability < 70 or (melanoma_probability < 40 and abcde_score >= 2):
                     st.warning(f"🟡 مستوى الخطورة المحتملة: متوسط")
@@ -293,3 +294,4 @@ if uploaded_file is not None and model_loaded:
 
 st.markdown("---")
 st.caption("🚨 إخلاء مسؤولية: هذا التطبيق هو مخرج لمشروع علمي ابتكاري طالباتي، مخصص لغايات التوعية والفحص الذاتي الأولي فقط، ولا يعتبر بديلاً عن التشخيص الطبي الاحترافي.")
+الآن
