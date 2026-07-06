@@ -178,13 +178,6 @@ def load_students_model():
     # قراءة النموذج مباشرة من الملف
     return tf.keras.models.load_model(model_path, compile=False)
 
-# كود تشخيصي يظهر للطالبات في القائمة الجانبية لمعرفة الحجم الحقيقي للملف على السيرفر
-if os.path.exists(model_path):
-    actual_size = os.path.getsize(model_path) / (1024 * 1024)
-    st.sidebar.success(f"📦 النموذج جاهز ومقروء بنجاح ({actual_size:.2f} MB)")
-else:
-    st.sidebar.error("❌ ملف النموذج غير موجود في المجلد!")
-
 try:
     model = load_students_model()
     model_loaded = True if model is not None else False
