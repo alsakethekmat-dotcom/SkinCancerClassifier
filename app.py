@@ -21,108 +21,65 @@ st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap');
     
-    * {
-        font-family: 'Tajawal', sans-serif !important;
-    }
-    
-    /* ضبط الاتجاه للغة العربية */
+    /* ضبط الاتجاه والخط العام */
     html, body, [data-testid="stAppViewContainer"], .main {
         direction: rtl !important;
         text-align: right !important;
-        background-color: #f4f7f6 !important;
-    }
-    
-    /* القائمة الجانبية (Sidebar) */
-    [data-testid="stSidebar"] {
-        background-color: #ffffff !important;
-        border-left: 1px solid #e0e0e0;
-        direction: rtl !important;
-        text-align: right !important;
+        font-family: 'Tajawal', sans-serif !important;
     }
     
     /* العناوين الرئيسية */
     .title-text {
-        font-size: 2.8rem;
+        font-size: 3rem !important;
         font-weight: 800;
-        background: -webkit-linear-gradient(45deg, #0284c7, #0ea5e9);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        color: #0284c7;
         text-align: center;
-        margin-bottom: 5px;
+        margin-bottom: 10px;
     }
+    
     .subtitle-text {
-        color: #475569;
-        font-size: 1.2rem;
+        color: #334155;
+        font-size: 1.5rem !important;
         text-align: center;
         margin-bottom: 40px;
-        font-weight: 500;
+        font-weight: 700;
     }
     
-    /* تصميم البطاقات (Cards) للاستبيان */
-    .stCheckbox {
-        background: #ffffff;
-        padding: 15px 20px;
-        border-radius: 12px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.04);
-        margin-bottom: 12px;
-        border: 1px solid #f1f5f9;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .stCheckbox:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 12px rgba(2, 132, 199, 0.1);
-        border-color: #bae6fd;
+    /* عناوين الأعمدة والخطوط الفرعية */
+    h3 {
+        font-size: 1.8rem !important;
+        color: #0f172a !important;
+        margin-bottom: 20px !important;
     }
     
-    /* زر الفحص العصري */
-    .stButton > button {
-        width: 100%;
-        background: linear-gradient(90deg, #0284c7 0%, #0ea5e9 100%);
-        color: white !important;
-        font-size: 1.4rem !important;
-        font-weight: 700 !important;
-        border-radius: 50px !important;
-        padding: 12px 24px !important;
-        border: none !important;
-        box-shadow: 0 4px 15px rgba(2, 132, 199, 0.4) !important;
-        transition: all 0.3s ease !important;
-        margin-top: 20px;
-    }
-    .stButton > button:hover {
-        transform: scale(1.02);
-        box-shadow: 0 6px 20px rgba(2, 132, 199, 0.6) !important;
+    .stCaption {
+        font-size: 1.2rem !important;
+        color: #475569 !important;
+        margin-bottom: 15px !important;
     }
     
-    /* تصميم معلومات الفريق */
-    .team-card {
-        background: #f8fafc;
-        padding: 20px;
-        border-radius: 15px;
-        border-right: 4px solid #0284c7;
-        margin-top: 20px;
-        text-align: right; /* ضمان اتجاه النص يمين */
+    /* أسئلة الاستبيان */
+    .stCheckbox label {
+        font-size: 1.3rem !important;
+        font-weight: 600 !important;
+        color: #1e293b !important;
+        padding: 10px 0 !important;
     }
-    .team-title { color: #0284c7; font-weight: 700; margin-bottom: 10px; font-size: 1.1rem; }
-    .team-names { color: #334155; font-size: 1rem; line-height: 1.8; font-weight: 500;}
-
-    /* حل مشكلة كلمة Upload الإنجليزية */
+    
+    /* نص زر الرفع والتنبيهات */
     [data-testid="stFileUploadDropzone"] div div::before {
-        content: "اسحب وأفلت الصورة هنا أو اضغط للاستعراض";
-        display: block;
-        font-family: 'Tajawal', sans-serif;
-        color: #475569;
-        font-weight: 600;
-        font-size: 1.1rem;
+        content: "اسحب وأفلت الصورة هنا أو اضغط للاستعراض" !important;
+        font-size: 1.2rem !important;
+        font-weight: 700 !important;
     }
-    [data-testid="stFileUploadDropzone"] div div span {
-        display: none !important; 
-    }
-    [data-testid="stFileUploadDropzone"] div div small {
-        display: none !important; 
+    
+    /* القائمة الجانبية */
+    [data-testid="stSidebar"] {
+        direction: rtl !important;
+        text-align: right !important;
     }
     </style>
 """, unsafe_allow_html=True)
-
 # =========================================================
 # 2. القائمة الجانبية (فريق العمل والمدرسة)
 # =========================================================
