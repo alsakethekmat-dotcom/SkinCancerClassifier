@@ -80,34 +80,33 @@ p, li, span, .stMarkdown {
    🎯 الطريقة المضمونة لاستهداف الأزرار
    ===================================================== */
 
-/* 1. تصميم الأزرار الرئيسية (ذات النوع Primary) */
+/* 1. تصميم الأزرار الرئيسية (Primary) */
 div.stButton > button[kind="primary"] {
-    background-color: #1a4a75 !important; /* اللون الأزرق الداكن من الشعار */
-    color: white !important;
+    background-color: #1a4a75 !important; /* اللون الأزرق الداكن */
+    color: #ffffff !important;           /* لون الخط أبيض ناصع */
     font-size: 24px !important;
     font-weight: 800 !important;
     padding: 15px 30px !important;
     border-radius: 50px !important;
-    border: none !important;
+    border: 2px solid #1a4a75 !important; /* إضافة إطار لضمان الوضوح */
     box-shadow: 0 8px 25px rgba(26, 74, 117, 0.3) !important;
     transition: all 0.3s ease-in-out !important;
-    width: 100% !important; /* لجعل الزر عريضاً بالكامل */
+    width: 100% !important;
+    text-shadow: none !important;        /* إزالة أي ظلال قد تجعل النص غامقاً */
 }
 
-/* التغير عند تمرير الماوس (يتحول للأخضر المزرق) */
 div.stButton > button[kind="primary"]:hover {
-    background-color: #1c8c7c !important; 
+    background-color: #1c8c7c !important; /* الأخضر المزرق */
+    border: 2px solid #1c8c7c !important;
+    color: #ffffff !important;           /* يبقى الأبيض عند التمرير */
     transform: translateY(-4px) !important;
-    box-shadow: 0 12px 30px rgba(28, 140, 124, 0.4) !important;
-    color: white !important;
-    border: none !important;
 }
 
-/* 2. تصميم الزر الثانوي (زر العودة للرئيسية) */
+/* 2. تصميم زر العودة (زر فرعي - Secondary) */
 div.stButton > button[kind="secondary"] {
-    background-color: white !important;
-    color: #1a4a75 !important;
-    border: 2px solid #1a4a75 !important;
+    background-color: #f1f5f9 !important; /* خلفية رمادية فاتحة جداً */
+    color: #1c8c7c !important;           /* النص باللون الأخضر المزرق */
+    border: 2px solid #1c8c7c !important; /* إطار أخضر مزرق */
     font-size: 16px !important;
     font-weight: 700 !important;
     padding: 5px 20px !important;
@@ -116,10 +115,10 @@ div.stButton > button[kind="secondary"] {
 }
 
 div.stButton > button[kind="secondary"]:hover {
-    background-color: #1a4a75 !important;
-    color: white !important;
+    background-color: #1c8c7c !important; /* يتحول للأخضر المزرق */
+    color: white !important;             /* النص يصبح أبيض */
+    border: 2px solid #1c8c7c !important;
 }
-
 /* =====================================================
    🛠️ صندوق رفع الملفات
    ===================================================== */
