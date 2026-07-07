@@ -35,7 +35,7 @@ def go_home():
     st.session_state.user_image = None
     st.rerun()
 
-# كود الـ CSS الشامل مبني على ألوان الشعار (الأزرق الداكن والأخضر المزرق)
+# كود الـ CSS الشامل
 st.markdown("""
     <style>
 @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght=500;700;800&display=swap');
@@ -52,7 +52,7 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stMarkdownContaine
 }
 
 body {
-    background: #f4f7f9 !important; /* خلفية فاتحة جداً مريحة للعين */
+    background: #f4f7f9 !important; 
 }
 
 /* التخلص الكامل من الفراغات الميتة غير المستغلة */
@@ -97,14 +97,14 @@ p, li, span, .stMarkdown {
 .main-title {
     font-size: 3.2rem !important;
     font-weight: 800 !important;
-    color: #1a4a75 !important; /* الأزرق الداكن من الشعار */
+    color: #1a4a75 !important;
     margin: 0 !important;
     padding: 0 !important;
     line-height: 1.2 !important;
 }
 
 .main-subtitle {
-    color: #1c8c7c !important; /* الأخضر المزرق من الشعار */
+    color: #1c8c7c !important; 
     font-size: 1.6rem !important;
     font-weight: 800 !important;
     margin-top: 12px !important;
@@ -119,8 +119,8 @@ p, li, span, .stMarkdown {
     box-shadow: 0 10px 30px rgba(26, 74, 117, 0.06) !important;
     border: 1px solid #e2e8f0 !important;
 }
-.info-card { border-right: 6px solid #1c8c7c !important; } /* لون أخضر مزرق */
-.team-card { border-right: 6px solid #1a4a75 !important; } /* لون أزرق داكن */
+.info-card { border-right: 6px solid #1c8c7c !important; } 
+.team-card { border-right: 6px solid #1a4a75 !important; } 
 
 .card-title {
     font-size: 24px !important;
@@ -148,12 +148,12 @@ p, li, span, .stMarkdown {
 }
 
 /* =====================================================
-   🎯 هندسة الأزرار والتنقل تفاعلياً (بألوان الشعار)
+   🎯 هندسة الأزرار (ألوان الشعار حصرياً)
    ===================================================== */
 
-/* زر البداية الممركز بالمنتصف التام */
+/* 1. زر البداية الرئيسي (لون الشعار الأزرق الداكن) */
 div[data-testid="element-container"]:has(.hero-btn-marker) + div[data-testid="element-container"] div[data-testid="stButton"] button {
-    background: linear-gradient(135deg, #1c8c7c 0%, #1a4a75 100%) !important;
+    background-color: #1a4a75 !important; /* أزرق داكن */
     color: white !important;
     font-size: 25px !important;
     font-weight: 800 !important;
@@ -161,48 +161,61 @@ div[data-testid="element-container"]:has(.hero-btn-marker) + div[data-testid="el
     width: 100% !important;
     border-radius: 50px !important;
     border: none !important;
-    box-shadow: 0 10px 25px rgba(28, 140, 124, 0.35) !important;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    box-shadow: 0 10px 25px rgba(26, 74, 117, 0.3) !important;
+    transition: all 0.3s ease-in-out !important;
 }
 
+/* تأثير تمرير الماوس لزر البداية (يتحول للون الشعار الأخضر المزرق) */
 div[data-testid="element-container"]:has(.hero-btn-marker) + div[data-testid="element-container"] div[data-testid="stButton"] button:hover {
+    background-color: #1c8c7c !important; /* أخضر مزرق */
     transform: translateY(-4px) !important;
-    box-shadow: 0 15px 35px rgba(26, 74, 117, 0.5) !important;
-    filter: brightness(1.1) !important;
+    box-shadow: 0 15px 35px rgba(28, 140, 124, 0.4) !important;
 }
 
-/* أزرار الفحص والتنقل بالصفحات الأخرى */
+/* 2. أزرار الانتقال بين الصفحات (لون الشعار الأخضر المزرق) */
 div[data-testid="element-container"]:has(.next-btn-marker) + div[data-testid="element-container"] div[data-testid="stButton"] button {
     width: 100% !important;
-    background: linear-gradient(90deg, #1a4a75, #1c8c7c) !important;
+    background-color: #1c8c7c !important; /* أخضر مزرق */
     color: white !important;
     font-size: 22px !important;
     font-weight: 700 !important;
     border: none !important;
     border-radius: 50px !important;
     padding: 15px !important;
-    box-shadow: 0 8px 20px rgba(26, 74, 117, 0.25) !important;
+    box-shadow: 0 8px 20px rgba(28, 140, 124, 0.25) !important;
+    transition: all 0.3s ease-in-out !important;
 }
 
-/* زر العودة للرئيسية في الهيدر */
+/* تأثير تمرير الماوس لأزرار الانتقال (تتحول للأزرق الداكن) */
+div[data-testid="element-container"]:has(.next-btn-marker) + div[data-testid="element-container"] div[data-testid="stButton"] button:hover {
+    background-color: #1a4a75 !important; /* أزرق داكن */
+    box-shadow: 0 12px 25px rgba(26, 74, 117, 0.3) !important;
+}
+
+/* 3. زر العودة للرئيسية في الإطار العلوي (مفرغ بإطار أزرق داكن) */
 div[data-testid="element-container"]:has(.nav-btn-marker) + div[data-testid="element-container"] div[data-testid="stButton"] button {
     width: auto !important;
-    background: white !important;
+    background-color: white !important;
     color: #1a4a75 !important;
-    border: 2px solid #1a4a75 !important;
+    border: 2px solid #1a4a75 !important; /* أزرق داكن */
     font-size: 16px !important;
     font-weight: 700 !important;
     padding: 6px 20px !important;
     border-radius: 8px !important;
 }
 
+div[data-testid="element-container"]:has(.nav-btn-marker) + div[data-testid="element-container"] div[data-testid="stButton"] button:hover {
+    background-color: #1a4a75 !important;
+    color: white !important;
+}
+
 /* =====================================================
-   🛠️ تطبيق كود صندوق رفع الملفات بألوان الشعار
+   🛠️ صندوق رفع الملفات (بألوان الشعار)
    ===================================================== */
 .stFileUploader section {
-    border: 3px dashed #1c8c7c !important;
+    border: 3px dashed #1c8c7c !important; /* أخضر مزرق */
     border-radius: 20px !important;
-    background-color: #f0f7f6 !important; /* خلفية خضراء مزرقة فاتحة جداً */
+    background-color: #f0f7f6 !important;
     padding: 35px 20px !important;
 }
 
@@ -218,13 +231,13 @@ div[data-testid="element-container"]:has(.nav-btn-marker) + div[data-testid="ele
     display: block !important;
     font-size: 18px !important;
     font-weight: 700 !important;
-    color: #1a4a75 !important;
+    color: #1a4a75 !important; /* أزرق داكن */
     text-align: center !important;
     margin-bottom: 15px !important;
 }
 
 .stFileUploader button {
-    background: linear-gradient(90deg, #1c8c7c, #1a4a75) !important;
+    background-color: #1a4a75 !important; /* أزرق داكن */
     border: none !important;
     border-radius: 12px !important;
     padding: 20px 50px !important;
@@ -234,6 +247,10 @@ div[data-testid="element-container"]:has(.nav-btn-marker) + div[data-testid="ele
     margin: 0 auto !important;
     display: block !important;
     position: relative !important;
+}
+
+.stFileUploader button:hover {
+    background-color: #1c8c7c !important; /* أخضر مزرق عند التمرير */
 }
 
 .stFileUploader button::after {
