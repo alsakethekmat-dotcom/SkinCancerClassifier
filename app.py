@@ -82,8 +82,8 @@ p, li, span, .stMarkdown {
 
 /* 1. تصميم الأزرار الرئيسية (Primary) */
 div.stButton > button[kind="primary"] {
-    background-color: #1a4a75 !important; /* اللون الأزرق الداكن */
-    color: #ffffff !important;           /* لون الخط أبيض ناصع */
+    background-color: #f1f5f9 !important; /* اللون الأزرق الداكن */
+    color: #1c8c7c !important;           /* لون الخط أبيض ناصع */
     font-size: 24px !important;
     font-weight: 800 !important;
     padding: 15px 30px !important;
