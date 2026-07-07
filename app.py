@@ -129,7 +129,7 @@ div.stButton > button[kind="secondary"]:hover {
     display: none !important;
 }
 .stFileUploader section::before {
-    content: "📷 اسحب صورة الشامة هنا و اضغط على الزر بالأسفل" !important; display: block !important; font-size: 18px !important; font-weight: 700 !important; color: #1a4a75 !important; text-align: center !important; margin-bottom: 15px !important;
+    content: "📷 اسحب صورة الشامة هنا ثم اضغط على الزر الذي سيظهر بالأسفل" !important; display: block !important; font-size: 18px !important; font-weight: 700 !important; color: #1a4a75 !important; text-align: center !important; margin-bottom: 15px !important;
 }
 .stFileUploader button {
     background-color: #1a4a75 !important; border: none !important; border-radius: 12px !important; padding: 20px 50px !important; cursor: pointer !important; color: transparent !important; font-size: 0px !important; margin: 0 auto !important; display: block !important; position: relative !important;
