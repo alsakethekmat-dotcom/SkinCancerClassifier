@@ -35,7 +35,7 @@ def go_home():
     st.session_state.user_image = None
     st.rerun()
 
-# كود الـ CSS الشامل مدمجاً معه صندوق الرفع الاحترافي الخاص بك
+# كود الـ CSS الشامل مبني على ألوان الشعار (الأزرق الداكن والأخضر المزرق)
 st.markdown("""
     <style>
 @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght=500;700;800&display=swap');
@@ -52,7 +52,7 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stMarkdownContaine
 }
 
 body {
-    background: #f8fafc !important;
+    background: #f4f7f9 !important; /* خلفية فاتحة جداً مريحة للعين */
 }
 
 /* التخلص الكامل من الفراغات الميتة غير المستغلة */
@@ -65,12 +65,12 @@ body {
 /* تكبير وتغميق خطوط المحتوى العام */
 p, li, span, .stMarkdown {
     font-size: 21px !important;
-    color: #0f172a !important;
+    color: #1e293b !important;
     line-height: 1.8 !important;
     font-weight: 500 !important;
 }
 
-/* تصميم حاوية الهوية البصرية الممركزة (اللوغو والاسم بجوار بعضهما بالمنتصف) */
+/* تصميم حاوية الهوية البصرية الممركزة */
 .brand-flex-container {
     display: flex !important;
     align-items: center !important;
@@ -82,10 +82,10 @@ p, li, span, .stMarkdown {
 }
 
 .brand-logo-img {
-    width: 160px !important;
+    width: 180px !important;
     height: auto !important;
-    border-radius: 18px !important;
-    box-shadow: 0 8px 20px rgba(15, 118, 110, 0.1) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 10px 25px rgba(26, 74, 117, 0.15) !important;
 }
 
 .brand-text-block {
@@ -95,18 +95,18 @@ p, li, span, .stMarkdown {
 }
 
 .main-title {
-    font-size: 3.0rem !important;
+    font-size: 3.2rem !important;
     font-weight: 800 !important;
-    color: #0f766e !important;
+    color: #1a4a75 !important; /* الأزرق الداكن من الشعار */
     margin: 0 !important;
     padding: 0 !important;
     line-height: 1.2 !important;
 }
 
 .main-subtitle {
-    color: #334155 !important;
-    font-size: 1.4rem !important;
-    font-weight: 700 !important;
+    color: #1c8c7c !important; /* الأخضر المزرق من الشعار */
+    font-size: 1.6rem !important;
+    font-weight: 800 !important;
     margin-top: 12px !important;
     margin-bottom: 0 !important;
 }
@@ -116,16 +116,16 @@ p, li, span, .stMarkdown {
     background: white !important;
     padding: 30px !important;
     border-radius: 20px !important;
-    box-shadow: 0 10px 25px rgba(15, 118, 110, 0.04) !important;
+    box-shadow: 0 10px 30px rgba(26, 74, 117, 0.06) !important;
     border: 1px solid #e2e8f0 !important;
 }
-.info-card { border-right: 6px solid #0f766e !important; }
-.team-card { border-right: 6px solid #0284c7 !important; }
+.info-card { border-right: 6px solid #1c8c7c !important; } /* لون أخضر مزرق */
+.team-card { border-right: 6px solid #1a4a75 !important; } /* لون أزرق داكن */
 
 .card-title {
     font-size: 24px !important;
     font-weight: 800 !important;
-    color: #0f172a !important;
+    color: #1a4a75 !important;
     margin-bottom: 15px !important;
 }
 
@@ -144,15 +144,16 @@ p, li, span, .stMarkdown {
 .stCheckbox {
     background: white; padding: 18px 22px; border-radius: 12px;
     border: 1px solid #cbd5e1; margin-bottom: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
 }
 
 /* =====================================================
-   🎯 هندسة الأزرار العادية والتنقل تفاعلياً
+   🎯 هندسة الأزرار والتنقل تفاعلياً (بألوان الشعار)
    ===================================================== */
 
-/* زر البداية الياقوتي الممركز بالمنتصف التام */
+/* زر البداية الممركز بالمنتصف التام */
 div[data-testid="element-container"]:has(.hero-btn-marker) + div[data-testid="element-container"] div[data-testid="stButton"] button {
-    background: linear-gradient(135deg, #e11d48 0%, #f43f5e 100%) !important;
+    background: linear-gradient(135deg, #1c8c7c 0%, #1a4a75 100%) !important;
     color: white !important;
     font-size: 25px !important;
     font-weight: 800 !important;
@@ -160,35 +161,35 @@ div[data-testid="element-container"]:has(.hero-btn-marker) + div[data-testid="el
     width: 100% !important;
     border-radius: 50px !important;
     border: none !important;
-    box-shadow: 0 10px 25px rgba(225, 29, 72, 0.35) !important;
+    box-shadow: 0 10px 25px rgba(28, 140, 124, 0.35) !important;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
 }
 
 div[data-testid="element-container"]:has(.hero-btn-marker) + div[data-testid="element-container"] div[data-testid="stButton"] button:hover {
     transform: translateY(-4px) !important;
-    box-shadow: 0 15px 35px rgba(225, 29, 72, 0.5) !important;
+    box-shadow: 0 15px 35px rgba(26, 74, 117, 0.5) !important;
     filter: brightness(1.1) !important;
 }
 
 /* أزرار الفحص والتنقل بالصفحات الأخرى */
 div[data-testid="element-container"]:has(.next-btn-marker) + div[data-testid="element-container"] div[data-testid="stButton"] button {
     width: 100% !important;
-    background: linear-gradient(90deg, #0f766e, #0284c7) !important;
+    background: linear-gradient(90deg, #1a4a75, #1c8c7c) !important;
     color: white !important;
     font-size: 22px !important;
     font-weight: 700 !important;
     border: none !important;
     border-radius: 50px !important;
     padding: 15px !important;
-    box-shadow: 0 6px 18px rgba(15, 118, 110, 0.25) !important;
+    box-shadow: 0 8px 20px rgba(26, 74, 117, 0.25) !important;
 }
 
 /* زر العودة للرئيسية في الهيدر */
 div[data-testid="element-container"]:has(.nav-btn-marker) + div[data-testid="element-container"] div[data-testid="stButton"] button {
     width: auto !important;
     background: white !important;
-    color: #0f766e !important;
-    border: 2px solid #0f766e !important;
+    color: #1a4a75 !important;
+    border: 2px solid #1a4a75 !important;
     font-size: 16px !important;
     font-weight: 700 !important;
     padding: 6px 20px !important;
@@ -196,12 +197,12 @@ div[data-testid="element-container"]:has(.nav-btn-marker) + div[data-testid="ele
 }
 
 /* =====================================================
-   🛠️ تطبيق كود صندوق رفع الملفات الاحترافي المعتمد من قبلك
+   🛠️ تطبيق كود صندوق رفع الملفات بألوان الشعار
    ===================================================== */
 .stFileUploader section {
-    border: 3px dashed #0ea5e9 !important;
+    border: 3px dashed #1c8c7c !important;
     border-radius: 20px !important;
-    background-color: #f0f9ff !important;
+    background-color: #f0f7f6 !important; /* خلفية خضراء مزرقة فاتحة جداً */
     padding: 35px 20px !important;
 }
 
@@ -217,13 +218,13 @@ div[data-testid="element-container"]:has(.nav-btn-marker) + div[data-testid="ele
     display: block !important;
     font-size: 18px !important;
     font-weight: 700 !important;
-    color: #0369a1 !important;
+    color: #1a4a75 !important;
     text-align: center !important;
     margin-bottom: 15px !important;
 }
 
 .stFileUploader button {
-    background: linear-gradient(90deg, #0ea5e9, #0284c7) !important;
+    background: linear-gradient(90deg, #1c8c7c, #1a4a75) !important;
     border: none !important;
     border-radius: 12px !important;
     padding: 20px 50px !important;
@@ -232,7 +233,7 @@ div[data-testid="element-container"]:has(.nav-btn-marker) + div[data-testid="ele
     font-size: 0px !important;
     margin: 0 auto !important;
     display: block !important;
-    position: relative !important; /* مضاف لضمان ارتكاز النص الداخلي بدقة وثبات */
+    position: relative !important;
 }
 
 .stFileUploader button::after {
@@ -244,7 +245,7 @@ div[data-testid="element-container"]:has(.nav-btn-marker) + div[data-testid="ele
     left: 50% !important;
     top: 50% !important;
     transform: translate(-50%, -50%) !important;
-    white-space: nowrap !important; /* مضاف لضمان عدم انكسار جملة الزر */
+    white-space: nowrap !important;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -304,7 +305,7 @@ if st.session_state.page != 'home':
     with header_logo:
         st.image("logo.jpeg", width=115) 
     with header_title:
-        st.markdown("<h2 style='color:#0f766e; margin-top:25px; text-align:right; font-weight:800;'>نظام الفحص الأولي الذكي</h2>", unsafe_allow_html=True)
+        st.markdown("<h2 style='color:#1a4a75; margin-top:25px; text-align:right; font-weight:800;'>نظام الفحص الأولي الذكي</h2>", unsafe_allow_html=True)
     with header_btn:
         st.markdown('<div style="margin-top:28px; text-align:left;">', unsafe_allow_html=True)
         st.markdown('<div class="nav-btn-marker"></div>', unsafe_allow_html=True)
@@ -318,7 +319,7 @@ if st.session_state.page != 'home':
 # 4. منطق عرض وتنسيق الصفحات المتتابعة
 # =========================================================
 
-# ----------------- [صفحة 1: الصفحة الرئيسية المحدثة كلياً] -----------------
+# ----------------- [صفحة 1: الصفحة الرئيسية] -----------------
 if st.session_state.page == 'home':
     
     logo_b64 = get_base64_encoded_image(os.path.join(BASE_DIR, "logo.jpeg"))
@@ -375,7 +376,7 @@ if st.session_state.page == 'home':
 
 # ----------------- [صفحة 2: استبيان ABCDE السريري] -----------------
 elif st.session_state.page == 'survey':
-    st.markdown("<h2 style='color:#0f766e; font-weight:800;'>📋 الخطوة الأولى: التقييم السريري (ABCDE)</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='color:#1a4a75; font-weight:800;'>📋 الخطوة الأولى: التقييم السريري (ABCDE)</h2>", unsafe_allow_html=True)
     st.markdown("<p style='font-size:20px; color:#475569;'>الرجاء الإجابة على الأسئلة التالية بناءً على ملاحظتك البصرية للشامة الحالية:</p>", unsafe_allow_html=True)
     st.markdown("<br>", unsafe_allow_html=True)
     
@@ -392,9 +393,9 @@ elif st.session_state.page == 'survey':
         st.session_state.page = 'upload'
         st.rerun()
 
-# ----------------- [صفحة 3: رفع الصورة وتحليلها بالستايل الجديد الاحترافي] -----------------
+# ----------------- [صفحة 3: رفع الصورة وتحليلها] -----------------
 elif st.session_state.page == 'upload':
-    st.markdown("<h2 style='color:#0f766e; font-weight:800;'>📸 الخطوة الثانية: الفحص الرقمي (الذكاء الاصطناعي)</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='color:#1a4a75; font-weight:800;'>📸 الخطوة الثانية: الفحص الرقمي (الذكاء الاصطناعي)</h2>", unsafe_allow_html=True)
     st.markdown("<p style='font-size:20px; color:#475569;'>الرجاء رفع صورة قريبة جداً وواضحة للشامة المستهدفة:</p>", unsafe_allow_html=True)
     
     if not model_loaded:
@@ -427,11 +428,11 @@ elif st.session_state.page == 'upload':
                         st.session_state.page = 'result'
                         st.rerun()
                     except Exception as e:
-                        st.error(f"حدث خطأ برمي أثناء التحليل الفني: {e}")
+                        st.error(f"حدث خطأ برمجي أثناء التحليل الفني: {e}")
 
 # ----------------- [صفحة 4: التقرير الطبي والنتيجة النهائية] -----------------
 elif st.session_state.page == 'result':
-    st.markdown("<h2 style='color:#0f766e; font-weight:800;'>📊 التقرير الطبي المشترك والنتيجة النهائية</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='color:#1a4a75; font-weight:800;'>📊 التقرير الطبي المشترك والنتيجة النهائية</h2>", unsafe_allow_html=True)
     
     abcde_score = st.session_state.abcde_score
     melanoma_probability = st.session_state.prediction * 100
